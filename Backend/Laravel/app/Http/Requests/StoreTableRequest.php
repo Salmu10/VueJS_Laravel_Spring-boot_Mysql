@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreTableRequest extends FormRequest {
+    
+    public function authorize() {
+        return true;
+    }
+
+    public function rules() {
+        return [
+            'table_name' => 'required',
+            'capacity' => 'required',
+            'available' => 'required',
+            'image' => 'required',
+            'categories' => 'required', 'array:name,categories',
+        ];
+    }
+}
