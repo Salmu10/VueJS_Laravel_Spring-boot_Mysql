@@ -4,6 +4,9 @@ export default {
     INITIALIZE_ONE_STATE_TABLE: "InitializeOneStateTable",
     
     ///CATEGORY
-    INITIALIZE_CATEGORY: "initializeCategory",
-    INITIALIZE_ONE_CATEGORY: "InitializeOneCategory"
+    INITIALIZE_CATEGORY: "InitializeCategory",
+    INITIALIZE_ONE_CATEGORY: "InitializeOneCategory",
+    ADD_CATEGORY: "AddCategory",
+    UPDATE_CATEGORY: "UpdateCategory",
+    DELETE_CATEGORY: "DeleteCategory",
 }

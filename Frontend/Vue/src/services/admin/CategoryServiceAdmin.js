@@ -3,6 +3,19 @@ import secret from '../../secret.js'
 
 export default {
     getAllCategories() {
-        return Api(`${secret.LARAVEL_APP_URL}`).get(`categories/`)
-    }
+        return Api(`${secret.LARAVEL_APP_URL}`).get(`category/`)
+    },
+    getOneCategories(id) {
+        return Api(`${secret.LARAVEL_APP_URL}`).get(`category/${id}`)
+    },
+    CreateCategory(data) {
+        return Api(`${secret.LARAVEL_APP_URL}`).post('category', data);
+    },
+    UpdateCategory(data) {
+        return Api(`${secret.LARAVEL_APP_URL}`).put(`category/${data.id}`, data);
+    },
+    DeleteCategory(data) {
+        // console.log(id);
+        return Api(`${secret.LARAVEL_APP_URL}`).delete(`category/${data.id}`);
+    },
 }

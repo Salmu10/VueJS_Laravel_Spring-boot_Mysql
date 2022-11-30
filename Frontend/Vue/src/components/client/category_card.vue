@@ -25,6 +25,7 @@
         display: block;
         width: 50%;
         margin: auto;
+        margin-top: 3%;
         border: 2px solid #333;
         border-radius: 15px;
         padding: 20px;

@@ -23,18 +23,20 @@
             category: Object
         },
         setup(props) {
+
             const store = useStore();
             const router = useRouter();
+
             function updateCategory(id) {
-                console.log(id);
-                store.dispatch(Constant.INITIALIZE_CATEGORY, { category: { ...props.category } });
+                store.dispatch("categoryAdmin/" + Constant.INITIALIZE_CATEGORY, { category: { ...props.category } });
                 router.push({ name: 'category_update', params: { id } })
             }
-            function deleteCategory() {
-                console.log('Hola delete');
+            function deleteCategory(id) {
+                // console.log(id);
+                store.dispatch("categoryAdmin/" + Constant.DELETE_CATEGORY, { id });
             }
 
-            return { updateCategory, deleteCategory };
+            return { store, updateCategory, deleteCategory };
         }
     }
 </script>
@@ -45,6 +47,7 @@
         display: block;
         width: 50%;
         margin: auto;
+        margin-top: 3%;
         border: 2px solid #333;
         border-radius: 15px;
         padding: 20px;
@@ -55,7 +58,7 @@
         .buttons_box {
             display: flex;
             flex-direction: row;
-            justify-content: end;
+            justify-content: flex-end;
             button {
                 display: block;
                 margin-top: 2%;

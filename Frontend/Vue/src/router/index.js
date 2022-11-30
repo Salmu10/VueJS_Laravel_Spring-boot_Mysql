@@ -7,6 +7,7 @@ const routes = [
   { path: "/dashboard", name: "dashboard", component: () => import('../views/Dashboard.vue') },
   { path: "/dashboard/categories", name: "categories_list", component: () => import('../views/Admin/Category/Categories_list.vue') },
   { path: "/dashboard/tables", name: "tables_list", component: () => import('../views/Admin/Table/Tables_list.vue') },
+  { path: "/dashboard/categories/add", name: "category_add", component: () => import('../views/Admin/Category/CategoryAdd.vue') },
   { path: "/dashboard/categories/update/:id", name: "category_update", component: () => import('../views/Admin/Category/CategoryUpdate.vue') }
 ];
 

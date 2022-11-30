@@ -8,21 +8,16 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label htmlFor="todo">Tarea:</label>
-                    <!-- <input type="text" class="form-control" v-model="state.todoitemlocal.todo" />
-                    </div>
-                    <div class="form-group">
-                        <label htmlFor="desc">Descripción:</label>
-                        <textarea class="form-control" rows="3" id="desc" v-model="state.todoitemlocal.desc"></textarea>  
-                    </div>
-                    <div class="form-group">
-                        <label htmlFor="desc">Terminación : </label>&nbsp;
-                        <input type="checkbox" v-model="state.todoitemlocal.done" />   
-                    </div> -->
-                    <div class="form-group">
-                        <button type="button" class="btn btn-primary m-1" @click="update_category">Actualizar</button>
-                        <button type="button" class="btn btn-primary m-1" @click="cancel">Cancelar</button>
-                    </div>
+                    <label htmlFor="cat_name">Category Name:</label>
+                    <input type="text" class="form-control" v-model="state.category_local.category_name"/>
+                </div>
+                <div class="form-group">
+                    <label htmlFor="img">Image:</label>
+                    <textarea class="form-control" rows="3" id="img" v-model="state.category_local.image"></textarea>  
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary m-1" @click="update_category()">Update</button>
+                    <button type="button" class="btn btn-primary m-1" @click="cancel()">Cancel</button>
                 </div>
             </div>
         </div>
@@ -31,7 +26,7 @@
   
 <script>
     import Constant from '../../../Constant.js';
-    // import { reactive } from 'vue';
+    import { reactive, computed } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter, useRoute } from 'vue-router';
   
@@ -41,21 +36,24 @@
             const router = useRouter();
             const route = useRoute();
 
-            store.dispatch(`categoryDashboard/${Constant.INITIALIZE_ONE_CATEGORY}`, route.params.id);
+            store.dispatch("categoryAdmin/" + Constant.INITIALIZE_ONE_CATEGORY, route.params.id);
+
+            // console.log(store.state.categoryAdmin.categories);
+            
             const state = reactive({
-                category: computed(() => store.getters['categoryDashboard/GetCategory'])
+                category_local: computed(() => store.getters['categoryAdmin/GetCategory'])
             });
 
-            const update_category = () => {
+            function update_category() {
+                store.dispatch("categoryAdmin/" + Constant.UPDATE_CATEGORY, { category: state.category_local });
                 router.push({ name:"categories_list" });
-                // store.dispatch(Constant.UPDATE_TODO, { todoitem: state.todoitemlocal });
             }
 
-            const cancel = () => {
+            function cancel() {
                 router.push({ name:"categories_list"});
             }
 
-            return { update_category, cancel };
+            return { state, update_category, cancel };
         }
     }
 </script>
