@@ -17,7 +17,7 @@
             const store = useStore();
             store.dispatch("table/" + Constant.INITIALIZE_TABLE);
             const state = reactive({
-                tables: computed(() => store.getters["table/getTables"])
+                tables: computed(() => store.getters["table/GetTables"])
             })
             return { state }
         }
@@ -31,6 +31,14 @@
         justify-content: space-between;
         flex-direction: column;
         width: 100%;
+        padding: 20px;
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
     }
 
 </style>

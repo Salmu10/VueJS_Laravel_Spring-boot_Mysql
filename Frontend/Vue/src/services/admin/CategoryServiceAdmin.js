@@ -5,7 +5,7 @@ export default {
     getAllCategories() {
         return Api(`${secret.LARAVEL_APP_URL}`).get(`category/`)
     },
-    getOneCategories(id) {
+    getOneCategory(id) {
         return Api(`${secret.LARAVEL_APP_URL}`).get(`category/${id}`)
     },
     CreateCategory(data) {
@@ -15,7 +15,6 @@ export default {
         return Api(`${secret.LARAVEL_APP_URL}`).put(`category/${data.id}`, data);
     },
     DeleteCategory(data) {
-        // console.log(id);
         return Api(`${secret.LARAVEL_APP_URL}`).delete(`category/${data.id}`);
     },
 }

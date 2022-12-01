@@ -4,7 +4,8 @@ import CategoryServiceAdmin from '../../../services/admin/CategoryServiceAdmin';
 export const categoryAdmin = {
     namespaced: true,
     state: {
-        categories: []
+        categories: [],
+        category: []
     },
     mutations: {
         [Constant.INITIALIZE_CATEGORY]: (state, payload) => {
@@ -47,7 +48,7 @@ export const categoryAdmin = {
                 const data = store.state.categories ?? [];
                 const index = data.findIndex(item => item.id == payload);
                 if (index === -1) {
-                    const response = await CategoryServiceAdmin.getOneCategories(payload);
+                    const response = await CategoryServiceAdmin.getOneCategory(payload);
                     store.commit(Constant.INITIALIZE_ONE_CATEGORY, response.data.data);
                 } else {
                     store.commit(Constant.INITIALIZE_ONE_CATEGORY, store.state.categories[index]);

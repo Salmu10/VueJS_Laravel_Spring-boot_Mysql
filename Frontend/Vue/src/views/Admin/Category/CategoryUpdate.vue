@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col p-3">
-                <h2>Cambiar contenido de tareas pendientes</h2>
+                <h2>Modify category</h2>
             </div>
         </div>
         <div class="row">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group">
                     <label htmlFor="img">Image:</label>
-                    <textarea class="form-control" rows="3" id="img" v-model="state.category_local.image"></textarea>  
+                    <input type="text" class="form-control" id="img" v-model="state.category_local.image"/>  
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-primary m-1" @click="update_category()">Update</button>
@@ -37,11 +37,9 @@
             const route = useRoute();
 
             store.dispatch("categoryAdmin/" + Constant.INITIALIZE_ONE_CATEGORY, route.params.id);
-
-            // console.log(store.state.categoryAdmin.categories);
-            
+        
             const state = reactive({
-                category_local: computed(() => store.getters['categoryAdmin/GetCategory'])
+                category_local: computed(() => store.getters['categoryAdmin/GetCategory']),
             });
 
             function update_category() {

@@ -1,7 +1,10 @@
 export default {
-    ///Table
+    ///TABLE
     INITIALIZE_TABLE: "InitializeTable",
-    INITIALIZE_ONE_STATE_TABLE: "InitializeOneStateTable",
+    INITIALIZE_ONE_TABLE: "InitializeOneStateTable",
+    ADD_TABLE: "AddTable",
+    UPDATE_TABLE: "UpdateTable",
+    DELETE_TABLE: "DeleteTable",
     
     ///CATEGORY
     INITIALIZE_CATEGORY: "InitializeCategory",

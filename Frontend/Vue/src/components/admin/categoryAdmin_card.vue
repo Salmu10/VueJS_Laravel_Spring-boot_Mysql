@@ -1,5 +1,5 @@
 <template>
-    <div class="category_card">
+    <!-- <div class="category_card">
         <div class="name">
             <h1>{{ category.category_name }}</h1>
             <p class="image">
@@ -10,7 +10,17 @@
             <button @click="updateCategory(category.id)">Update</button>
             <button @click="deleteCategory(category.id)">Delete</button>
         </div>
-    </div>
+    </div> -->
+
+    <tr>
+        <td class="id_col">{{ category.id }}</td>
+        <td>{{ category.category_name }}</td>
+        <td>{{ category.image }}</td>
+        <td> 
+            <button class="buttons" @click="updateCategory(category.id)">Edit</button>
+            <button class="buttons" @click="deleteCategory(category.id)">Delete</button>
+        </td>
+    </tr>
 </template>
 
 <script>
@@ -32,7 +42,6 @@
                 router.push({ name: 'category_update', params: { id } })
             }
             function deleteCategory(id) {
-                // console.log(id);
                 store.dispatch("categoryAdmin/" + Constant.DELETE_CATEGORY, { id });
             }
 
@@ -43,39 +52,25 @@
 
 <style lang="scss">
 
-    .category_card {
-        display: block;
-        width: 50%;
-        margin: auto;
-        margin-top: 3%;
+    .id_col {
+        font-weight: bold;
+    }
+
+    .buttons {
+        display: inline-block;
+        margin-right: 20px;
+        margin-left: 20px;
+        width: 90px;
+        padding: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
         border: 2px solid #333;
-        border-radius: 15px;
-        padding: 20px;
-        h1 {
-            text-align: center;
-            font-size: 35px;
-        }
-        .buttons_box {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            button {
-                display: block;
-                margin-top: 2%;
-                margin-right: 10px;
-                width: 100px;
-                padding: 5px;
-                text-transform: uppercase;
-                font-weight: bold;
-                font-size: 15px;
-                border: 2px solid #333;
-                border-radius: 10px; 
-                background-color: #EAF2E3;
-                color: #333;
-                &:hover{
-                    background-color: #66D7D1;
-                }
-            }
+        border-radius: 10px; 
+        background-color: #66D7D1;
+        color: #333;
+        &:hover{
+            background-color: #EAF2E3;
         }
     }
 

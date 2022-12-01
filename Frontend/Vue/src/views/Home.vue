@@ -36,6 +36,14 @@
         justify-content: space-between;
         flex-direction: column;
         width: 100%;
+        padding: 20px;
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
     }
 
 </style>

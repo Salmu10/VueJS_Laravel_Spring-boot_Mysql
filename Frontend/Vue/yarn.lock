@@ -8624,6 +8624,11 @@
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
+"vue-select@^4.0.0-beta.6":
+  "integrity" "sha512-K+zrNBSpwMPhAxYLTCl56gaMrWZGgayoWCLqe5rWwkB8aUbAUh7u6sXjIR7v4ckp2WKC7zEEUY27g6h1MRsIHw=="
+  "resolved" "https://registry.npmjs.org/vue-select/-/vue-select-4.0.0-beta.6.tgz"
+  "version" "4.0.0-beta.6"
+
 "vue-style-loader@^4.1.0", "vue-style-loader@^4.1.2":
   "integrity" "sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg=="
   "resolved" "https://registry.npmjs.org/vue-style-loader/-/vue-style-loader-4.1.3.tgz"

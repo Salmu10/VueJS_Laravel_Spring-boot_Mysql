@@ -22,7 +22,7 @@ export const table = {
         }
     },
     getters: {
-        getTables(state) {
+        GetTables(state) {
             return state.table;
         }
     }

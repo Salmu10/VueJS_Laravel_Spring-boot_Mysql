@@ -6,6 +6,15 @@ export default {
         return Api(`${secret.LARAVEL_APP_URL}`).get(`table/`)
     },
     getOneTable(id) {
-        return Api(`${secret.LARAVEL_APP_URL}`).get('table/' + id);
-    }
+        return Api(`${secret.LARAVEL_APP_URL}`).get(`table/${id}`);
+    },
+    CreateTable(data) {
+        return Api(`${secret.LARAVEL_APP_URL}`).post('table', data);
+    },
+    UpdateTable(data) {
+        return Api(`${secret.LARAVEL_APP_URL}`).put(`table/${data.id}`, data);
+    },
+    DeleteTable(data) {
+        return Api(`${secret.LARAVEL_APP_URL}`).delete(`table/${data.id}`);
+    },
 }

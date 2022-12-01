@@ -1,12 +1,20 @@
 <template>
-    <div class="categories_lsit_container">
+    <div class="categories_list_container">
         <h1>Categories List</h1>
-        <router-link to="/dashboard/categories/add"><button>Add Category</button></router-link>
-        <categoryAdmin_card v-for="category in state.categories" :key="category.id" :category="category"/>
-
-        <!-- <div v-for="category in state.categories" :key="category.id">
-            <p>{{ state.categories }}</p>
-        </div> -->
+        <router-link to="/dashboard/Categories/add"><button class="add_button">Add Category</button></router-link>
+        <table class="table">
+            <thead class="thead_catlist">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="tbody_catlist">
+                <categoryAdmin_card v-for="category in state.categories" :key="category.id" :category="category"/>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -31,7 +39,7 @@
 
 <style lang="scss">
 
-    .categories_lsit_container {
+    .categories_list_container {
         width: 100%;
         padding: 20px;
         h1 {
@@ -40,6 +48,43 @@
             font-weight: bold;
             text-transform: uppercase;
             color: #333;
+            padding: 30px;
+        }
+        .add_button {
+            display: block;
+            width: 150px;
+            padding: 10px;
+            margin: auto;
+            margin-bottom: 3%;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px solid #333;
+            border-radius: 10px; 
+            background-color: #EAF2E3;
+            color: #333;
+            &:hover{
+                background-color: #66D7D1;
+            }
+        }
+        .table {
+            background-color: #EAF2E3;
+            width: 80%;
+            margin: auto;
+            border: 2px solid #333;
+            .thead_catlist {
+                background-color: #66D7D1;
+                text-transform: uppercase;
+            }
+            th {
+                text-align: center;
+                border: 2px solid #333;
+            }
+            td {
+                text-align: center;
+                border: 2px solid #333;
+                vertical-align: middle;
+            }
         }
     }
 
