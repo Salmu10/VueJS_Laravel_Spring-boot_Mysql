@@ -3,7 +3,9 @@ import CategoryService from '../../../services/client/CategoryService';
 
 export const category = {
     namespaced: true,
-    state: {},
+    state: {
+        categories: [],
+    },
     mutations: {
         [Constant.INITIALIZE_CATEGORY]: (state, payload) => {
             if (payload) {

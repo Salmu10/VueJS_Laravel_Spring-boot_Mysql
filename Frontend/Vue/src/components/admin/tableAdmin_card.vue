@@ -60,50 +60,7 @@
         background-color: #66D7D1;
         color: #333;
         &:hover{
-            background-color: #EAF2E3;
+            background-color: #4ba7a2;
         }
     }
-    
-
-    // td {
-    //     text-align: center;
-    //     border: 1px solid #333;
-    // }
-
-    // .table_card {
-    //     display: block;
-    //     width: 50%;
-    //     margin: auto;
-    //     margin-top: 3%;
-    //     border: 2px solid #333;
-    //     border-radius: 15px;
-    //     padding: 20px;
-    //     h1 {
-    //         text-align: center;
-    //         font-size: 35px;
-    //     }
-    //     .buttons_box {
-    //         display: flex;
-    //         flex-direction: row;
-    //         justify-content: flex-end;
-    //         button {
-    //             display: block;
-    //             margin-top: 2%;
-    //             margin-right: 10px;
-    //             width: 100px;
-    //             padding: 5px;
-    //             text-transform: uppercase;
-    //             font-weight: bold;
-    //             font-size: 15px;
-    //             border: 2px solid #333;
-    //             border-radius: 10px; 
-    //             background-color: #EAF2E3;
-    //             color: #333;
-    //             &:hover{
-    //                 background-color: #66D7D1;
-    //             }
-    //         }
-    //     }
-    // }
-
 </style>

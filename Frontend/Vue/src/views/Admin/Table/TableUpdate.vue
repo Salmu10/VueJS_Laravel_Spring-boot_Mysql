@@ -62,7 +62,6 @@
             }, 1000);
 
             function update_table() {
-
                 const cat = state.table_local.categories;
                 const cat_names = cat.map(item => item.category_name);
                 state.table_local.categories = cat_names;

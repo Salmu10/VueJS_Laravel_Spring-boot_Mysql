@@ -7,7 +7,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Capacity</th>
                     <th>Available</th>
                     <th>Image</th>
                     <th>Actions</th>

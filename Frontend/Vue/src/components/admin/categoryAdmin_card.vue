@@ -70,7 +70,7 @@
         background-color: #66D7D1;
         color: #333;
         &:hover{
-            background-color: #EAF2E3;
+            background-color: #4ba7a2;
         }
     }
 

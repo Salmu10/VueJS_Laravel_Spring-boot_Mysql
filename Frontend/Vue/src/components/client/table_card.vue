@@ -23,12 +23,12 @@
 
     .table_card {
         display: block;
-        width: 50%;
+        width: 100%;
         margin: auto;
-        margin-top: 3%;
         border: 2px solid #333;
         border-radius: 15px;
         padding: 20px;
+        margin-bottom: 2%;
         h1 {
             text-align: center;
             font-size: 35px;
