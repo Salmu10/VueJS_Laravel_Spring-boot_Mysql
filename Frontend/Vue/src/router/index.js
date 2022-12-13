@@ -4,7 +4,7 @@ const routes = [
   { path:"", redirect:{ name:"home" } },
   { path: "/home", name: "home", component: () => import('../views/Home') },
   { path: "/reserve", name: "reserve", component: () => import('../views/Reserve.vue') },
-  { path: "/reserve/:filters", name: "reserveFilters", component: () => import('../views/Reserve.vue') },
+  { path: "/reserve/:filters", name: "reserve_filters", component: () => import('../views/Reserve.vue') },
   { path: "/dashboard", name: "dashboard", component: () => import('../views/Dashboard.vue') },
   { path: "/dashboard/categories", name: "categories_list", component: () => import('../views/Admin/Category/Categories_list.vue') },
   { path: "/dashboard/categories/add", name: "category_add", component: () => import('../views/Admin/Category/CategoryAdd.vue') },

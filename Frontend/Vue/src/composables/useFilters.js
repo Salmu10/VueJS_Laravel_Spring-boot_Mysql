@@ -2,7 +2,9 @@ import { ref } from 'vue';
 import TableService from '../services/client/TableService';
 
 export const useFilters = (filters = {}) => {
-    const tables = ref([])
+
+    filters.limit = 3;
+    const tables = ref([]);
 
     TableService.get_tables(filters)
         .then(function (res) {

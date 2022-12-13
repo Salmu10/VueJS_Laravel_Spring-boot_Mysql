@@ -4,6 +4,7 @@
             <div class="logo">
                 <img src="../assets/logo.png" alt="logo">
             </div>
+            <search @search="apply_search" />
             <nav>
                 <div class="nav_buttons">
                     <router-link class="link" to="/home">Home</router-link>
@@ -14,6 +15,31 @@
         </div>
     </header>
 </template>
+
+<script>
+
+    import { useRouter } from 'vue-router';
+    import search from './search.vue';
+
+    export default {
+        components: { search },
+        setup() {
+            const router = useRouter();
+
+            const apply_search = (search) => {
+                // console.log(search);
+                let filters = { categories: [search], capacity: 0, table_name: "", page: 1, limit: 3 };
+                const filters_url = btoa(JSON.stringify(filters));
+                router.push({ name: "reserve_filters", params: { filters: filters_url } });
+                // localStorage.setItem("filters", JSON.stringify(filters));
+                setTimeout(() => { window.location.reload(); }, 500);
+            }
+
+            return { apply_search }
+        }
+    }
+
+</script>
 
 <style lang="scss">
 

@@ -14,5 +14,7 @@ public class TableParams {
     private String table_name;
     private Integer capacity;
     private String[] categories;
+    private Integer page;
+    private Integer limit;
 }
 

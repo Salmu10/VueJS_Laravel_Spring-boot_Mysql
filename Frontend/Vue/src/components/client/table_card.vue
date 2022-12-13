@@ -5,6 +5,9 @@
             <p class="capacity">
                 Capacity: {{ table.capacity }}
             </p>
+            <p class="categories" v-for="category in table.categories" :key="category.id">
+                Category: {{ category.category_name }}
+            </p>
         </div>
     </div>
 </template>
@@ -23,12 +26,13 @@
 
     .table_card {
         display: block;
-        width: 100%;
-        margin: auto;
+        width: 25%;
+        min-height: 300px;
+        // margin: auto;
         border: 2px solid #333;
         border-radius: 15px;
         padding: 20px;
-        margin-bottom: 2%;
+        // margin-bottom: 2%;
         h1 {
             text-align: center;
             font-size: 35px;

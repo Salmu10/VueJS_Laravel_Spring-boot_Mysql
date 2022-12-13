@@ -25,9 +25,9 @@
             });
 
             const redirectReserve = (item) => {
-                const filters = { categories: [item.category_name], capacity: 0, table_name: ""};
+                const filters = { categories: [item.category_name], capacity: 0, table_name: "", page: 1, limit: 3};
                 const filters_url = btoa(JSON.stringify(filters));
-                router.push({ name: "reserveFilters", params: { filters: filters_url } });
+                router.push({ name: "reserve_filters", params: { filters: filters_url } });
             }
 
             return { state, redirectReserve };
