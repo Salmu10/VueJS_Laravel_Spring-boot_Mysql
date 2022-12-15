@@ -8,6 +8,7 @@ export const useFilters = (filters = {}) => {
 
     TableService.get_tables(filters)
         .then(function (res) {
+            // console.log(res.data);
             tables.value = res.data;
         })
         .catch(function (error) {

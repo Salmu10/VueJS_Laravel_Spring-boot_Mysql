@@ -7,9 +7,9 @@ import router from "./router";
 import vSelect from 'vue-select';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import './assets';
 
-import { faUserSecret, faSearch } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserSecret);
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 library.add(faSearch);
 
 const app = createApp(App);

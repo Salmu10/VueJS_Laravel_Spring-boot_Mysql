@@ -44,6 +44,7 @@
     .tables_list_container {
         width: 100%;
         padding: 20px;
+        min-height: 70vh;
         h1 {
             text-align: center;
             font-size: 35px;

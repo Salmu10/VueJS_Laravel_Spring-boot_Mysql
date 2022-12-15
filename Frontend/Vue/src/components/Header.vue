@@ -2,7 +2,9 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="../assets/logo.png" alt="logo">
+                <router-link class="link" to="/home">
+                    <img src="../assets/logo.png" alt="logo">
+                </router-link>
             </div>
             <search @search="apply_search" />
             <nav>
@@ -56,7 +58,7 @@
     .header-container {
         display: grid;
         gap: 10px;
-        grid-template-columns: 1fr 1.2fr 0.8fr;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-right: 20px;
         align-items: center;
     }
@@ -64,7 +66,8 @@
     .logo {
         grid-column-start: 1;
         grid-column-end: 2;
-        text-align: center;
+        text-align: left;
+        margin-left: 5%;
     }
     
     .logo img {

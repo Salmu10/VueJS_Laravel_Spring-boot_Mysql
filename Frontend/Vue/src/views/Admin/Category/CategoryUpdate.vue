@@ -57,5 +57,9 @@
 </script>
   
 <style>
+
+    .container {
+        min-height: 68vh;
+    }
   
 </style>

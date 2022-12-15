@@ -1,7 +1,14 @@
 <template>
     <div class="home_container">
         <h1>Categories</h1>
-        <category_card v-for="category in state.categories" :key="category.id" :category="category" @emitAction="redirectReserve"/>
+        <carousel :categories="state.categories" @emitAction="redirect"/>
+        <h1>Menus</h1>
+        <div class="menus_semana">
+            <p>Week Menu</p>
+        </div>
+        <div class="menus_finde">
+            <p>Weekend Menu</p>
+        </div>
     </div>
 </template>
 
@@ -10,10 +17,10 @@
     import { useRouter } from 'vue-router';
     import { useStore } from 'vuex';
     import Constant from '../Constant.js';
-    import category_card from '../components/client/category_card.vue';
+    import carousel from '../components/client/carousel.vue';
 
     export default {
-        components: { category_card },
+        components: { carousel },
         setup() {
             const router = useRouter();
             const store = useStore();
@@ -24,13 +31,13 @@
                 categories: computed(() => store.getters['category/GetCategories'])
             });
 
-            const redirectReserve = (item) => {
-                const filters = { categories: [item.category_name], capacity: 0, table_name: "", page: 1, limit: 3};
+            const redirect = (category) => {
+                const filters = { categories: [category.category_name], capacity: 0, table_name: "", page: 1, limit: 3};
                 const filters_url = btoa(JSON.stringify(filters));
                 router.push({ name: "reserve_filters", params: { filters: filters_url } });
             }
 
-            return { state, redirectReserve };
+            return { state, redirect };
         }
     }
 </script>
@@ -43,10 +50,11 @@
 
     .home_container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         flex-direction: column;
         width: 100%;
         padding: 20px;
+        min-height: 68vh;
         h1 {
             text-align: center;
             font-size: 35px;

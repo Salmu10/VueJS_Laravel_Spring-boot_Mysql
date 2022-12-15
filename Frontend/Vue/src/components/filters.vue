@@ -71,12 +71,13 @@
         flex-wrap: wrap;
         justify-content: space-around;
         width: 90%;
-        border: 2px solid #333;
+        border: 3px solid #142b3b;
         border-radius: 10px;
         padding: 20px;
         align-items: center;
         margin: auto;
         margin-bottom: 2%;
+
         .filters_title {
             display: block;
             width: 100%;
@@ -88,11 +89,13 @@
                 font-size: 25px;
             }
         }
+
         .capacity_box, .buttons_box {
             display: block;
             width: 25%;
             text-align: center;
         }
+
         .categories_box {
             display: block;
             width: 50%;
@@ -102,11 +105,13 @@
                 min-width: 570px;
             }
         }
+
         .etiqueta {
             text-transform: uppercase;
             font-weight: bold;
             margin-right: 3%;
         }
+
         .filter_button, .delete_button {
             display: inline-block;
             width: 100px;

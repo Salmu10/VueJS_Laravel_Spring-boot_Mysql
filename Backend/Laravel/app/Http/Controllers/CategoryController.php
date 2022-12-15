@@ -8,8 +8,8 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
-class CategoryController extends Controller
-{
+class CategoryController extends Controller {
+    
     public function index() {
         return CategoryResource::collection(Category::all());
     }

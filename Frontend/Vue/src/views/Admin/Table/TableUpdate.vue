@@ -84,6 +84,7 @@
   @import '../../../../node_modules/vue-select/dist/vue-select.css';
 
     .container {
+        min-height: 68vh;
         select {
             background-color: transparent;
             border: none;

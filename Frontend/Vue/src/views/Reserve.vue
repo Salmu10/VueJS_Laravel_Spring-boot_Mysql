@@ -29,6 +29,12 @@
 
             let filters = { categories: [], capacity: 0, table_name: "", page: 1, limit: 3 };
 
+            const state = reactive({
+                tables: useFilters(filters),
+                page: filters.page,
+                total_pages: usePaginate(filters),
+            })
+
             try {
                 if (route.params.filters !== '') {
                     filters = JSON.parse(atob(route.params.filters));
@@ -36,12 +42,6 @@
             } catch (error) {
                 // console.log(error);
             }
-
-            const state = reactive({
-                tables: useFilters(filters),
-                page: filters.page,
-                total_pages: usePaginate(filters),
-            })
 
             const apply_filters = (filters) => {
                 const filters_url = btoa(JSON.stringify(filters));
@@ -106,6 +106,7 @@
     .pagination_container{
         display: block;
         margin: auto;
+        margin-top: 2%;
         .Pagination {
             justify-content: center;
         }   
