@@ -12,4 +12,5 @@ export default {
     ADD_CATEGORY: "AddCategory",
     UPDATE_CATEGORY: "UpdateCategory",
     DELETE_CATEGORY: "DeleteCategory",
+
 }

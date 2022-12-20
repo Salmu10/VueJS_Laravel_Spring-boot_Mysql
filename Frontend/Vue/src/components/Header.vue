@@ -12,6 +12,8 @@
                     <router-link class="link" to="/home">Home</router-link>
                     <router-link class="link" to="/reserve">Reserve</router-link>
                     <router-link class="link" to="/dashboard">PAdmin</router-link>
+                    <!-- <router-link class="link" to="/login">Login</router-link> -->
+                    <router-link class="link" to="/register">SignUp</router-link>
                 </div>
             </nav>
         </div>
@@ -29,11 +31,9 @@
             const router = useRouter();
 
             const apply_search = (search) => {
-                // console.log(search);
                 let filters = { categories: [search], capacity: 0, table_name: "", page: 1, limit: 3 };
                 const filters_url = btoa(JSON.stringify(filters));
                 router.push({ name: "reserve_filters", params: { filters: filters_url } });
-                // localStorage.setItem("filters", JSON.stringify(filters));
                 setTimeout(() => { window.location.reload(); }, 500);
             }
 
@@ -52,7 +52,7 @@
         width: 100%;
         background-color: $color_pricipal;
         padding: 0.5em 0;
-        margin-bottom: 1em;
+        // margin-bottom: 1em;
     }
 
     .header-container {
@@ -89,7 +89,7 @@
 
     .nav_buttons {
         display: grid;
-        grid-template-columns: repeat(3, 0.5fr);
+        grid-template-columns: repeat(4, 0.5fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 0px 20px;
     }

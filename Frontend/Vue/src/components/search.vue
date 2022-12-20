@@ -29,7 +29,6 @@
 
             const search_filter = () => {
                 if (state.categories !== "") {
-                    console.log('hola search');
                     const filters = { categories: [state.categories], table_name: "", capacity: 0 };
                     const filters_url = btoa(JSON.stringify(filters));
                     router.push({ name: "reserve_filters", params: { filters: filters_url } });
@@ -66,6 +65,7 @@
         outline: none;
         color: #333;
         font-weight: bold;
+        background-color: white;
         &:focus {
             color: #333;
         }

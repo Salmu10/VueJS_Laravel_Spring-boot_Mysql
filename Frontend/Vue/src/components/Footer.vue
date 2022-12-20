@@ -23,7 +23,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         width: 100%;
-        margin-top: 2%;
+        // margin-top: 2%;
         padding: 2em 0;
         background-color: #142b3b;
         color: white;

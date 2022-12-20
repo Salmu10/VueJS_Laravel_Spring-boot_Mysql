@@ -41,6 +41,7 @@
                 store.dispatch("categoryAdmin/" + Constant.INITIALIZE_CATEGORY, { category: { ...props.category } });
                 router.push({ name: 'category_update', params: { id } })
             }
+            
             function deleteCategory(id) {
                 store.dispatch("categoryAdmin/" + Constant.DELETE_CATEGORY, { id });
             }

@@ -84,6 +84,7 @@
         text-transform: uppercase;
         color: #333;
         padding: 20px;
+        margin-top: 2%;
     }
 
     .reserve_container {
@@ -106,7 +107,8 @@
     .pagination_container{
         display: block;
         margin: auto;
-        margin-top: 2%;
+        margin-top: 4%;
+        margin-bottom: 4%;
         .Pagination {
             justify-content: center;
         }   

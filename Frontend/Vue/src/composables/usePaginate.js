@@ -9,7 +9,6 @@ export const usePaginate = (filters = {}) => {
         .then(function (res) {
             const limit = filters.limit ?? 3;
             const total_tables = res.data;
-            console.log(total_tables);
             const pages = Math.ceil(total_tables / limit);
             total_pages.value = pages;
         })

@@ -17,7 +17,7 @@
     .dashboard_container {
         width: 100%;
         padding: 20px;
-        min-height: 68vh;
+        min-height: 75vh;
         h1 {
             text-align: center;
             text-transform: uppercase;
