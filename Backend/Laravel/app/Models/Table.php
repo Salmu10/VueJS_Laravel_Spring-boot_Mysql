@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Category;
 
 class Table extends Model {
+    
     use HasFactory;
 
     protected $fillable = ['table_name', 'capacity', 'available', 'image'];

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Mesa;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Table;
 
 class Category extends Model {
 
@@ -14,6 +14,6 @@ class Category extends Model {
     protected $fillable = ['category_name', 'image'];
 
     public function tables(): BelongsToMany {
-        return $this->belongsToMany(Mesa::class, 'categories_tables', 'id_category', 'id_table');
+        return $this->belongsToMany(Table::class, 'categories_tables', 'id_category', 'id_table');
     }
 }

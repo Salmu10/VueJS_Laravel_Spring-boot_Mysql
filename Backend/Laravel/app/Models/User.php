@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
+class User extends Model {
 
-    protected $fillable = ['username', 'email', 'password', 'image', 'type', 'is_active',];
+    use HasFactory;
 
-    protected $hidden = ['password', 'remember_token',];
+    protected $fillable = ['username', 'email', 'password', 'type', 'image', 'is_active'];
 
-    protected $casts = ['email_verified_at' => 'datetime',];
+    protected $hidden = ['created_at', 'updated_at'];
+
+    public function tables() {
+        return $this->morphedByMany(Table::class, 'id_table');
+    }
 }

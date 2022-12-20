@@ -22,9 +22,9 @@ class CategoryController extends Controller {
         return CategoryResource::make(Category::where('id', $id)->firstOrFail());
     }
 
-    public function update(UpdateCategoryRequest $request, $id)
-    {
+    public function update(UpdateCategoryRequest $request, $id) {
         $update = Category::where('id', $id)->update($request->validated());
+        
         if ($update == 1) {
             return response()->json([ "Message" => "Updated correctly" ]);
         } else {
