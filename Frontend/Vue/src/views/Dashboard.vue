@@ -2,8 +2,8 @@
     <div class="dashboard_container">
         <h1>Dashboard</h1>
         <div class="buttons_box">
-            <router-link to="/dashboard/categories"><button>Categories List</button></router-link>
-            <router-link to="/dashboard/tables"><button>Tables List</button></router-link>
+            <router-link to="/dashboard/categories" class="button">Categories List</router-link>
+            <router-link to="/dashboard/tables" class="button">Tables List</router-link>
         </div>
     </div>
 </template>
@@ -29,9 +29,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            button {
+            .button {
                 display: block;
                 margin: auto;
+                text-align: center;
                 margin-top: 2%;
                 width: 200px;
                 padding: 15px;

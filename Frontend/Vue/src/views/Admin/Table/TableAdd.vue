@@ -85,6 +85,9 @@
 
     .container {
         min-height: 68vh;
+        h2 {
+            margin-top: 3%;
+        }
         select {
             background-color: transparent;
             border: none;

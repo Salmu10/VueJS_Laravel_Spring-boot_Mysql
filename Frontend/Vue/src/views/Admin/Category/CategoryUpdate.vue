@@ -56,10 +56,13 @@
     }
 </script>
   
-<style>
+<style lang="scss">
 
     .container {
-        min-height: 68vh;
+        min-height: 75vh;
+        h2 {
+            margin-top: 3%;
+        }
     }
   
 </style>

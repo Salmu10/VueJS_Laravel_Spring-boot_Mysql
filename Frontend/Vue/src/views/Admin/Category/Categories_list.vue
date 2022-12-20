@@ -1,7 +1,7 @@
 <template>
     <div class="categories_list_container">
         <h1>Categories List</h1>
-        <router-link to="/dashboard/Categories/add"><button class="add_button">Add Category</button></router-link>
+        <router-link to="/dashboard/Categories/add" class="button add_button">Add Category</router-link>
         <table class="table">
             <thead class="thead_catlist">
                 <tr>
@@ -42,7 +42,7 @@
     .categories_list_container {
         width: 100%;
         padding: 20px;
-        min-height: 70vh;
+        min-height: 75vh;
         h1 {
             text-align: center;
             font-size: 35px;
@@ -58,6 +58,7 @@
             margin: auto;
             margin-bottom: 3%;
             text-transform: uppercase;
+            text-align: center;
             font-weight: bold;
             font-size: 14px;
             border: 2px solid #333;

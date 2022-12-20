@@ -1,17 +1,4 @@
 <template>
-    <!-- <div class="category_card">
-        <div class="name">
-            <h1>{{ category.category_name }}</h1>
-            <p class="image">
-                image: {{ category.image }}
-            </p>
-        </div>
-        <div class="buttons_box">
-            <button @click="updateCategory(category.id)">Update</button>
-            <button @click="deleteCategory(category.id)">Delete</button>
-        </div>
-    </div> -->
-
     <tr>
         <td class="id_col">{{ category.id }}</td>
         <td>{{ category.category_name }}</td>

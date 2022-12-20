@@ -1,7 +1,7 @@
 <template>
     <div class="tables_list_container">
         <h1>Tables List</h1>
-        <router-link to="/dashboard/tables/add"><button class="add_button">Add Table</button></router-link>
+        <router-link to="/dashboard/tables/add" class="button add_button">Add Table</router-link>
         <table class="table">
             <thead class="thead_tblist">
                 <tr>
@@ -45,6 +45,7 @@
         width: 100%;
         padding: 20px;
         min-height: 70vh;
+        margin-bottom: 3%;
         h1 {
             text-align: center;
             font-size: 35px;
@@ -60,6 +61,7 @@
             margin: auto;
             margin-bottom: 3%;
             text-transform: uppercase;
+            text-align: center;
             font-weight: bold;
             font-size: 14px;
             border: 2px solid #333;
