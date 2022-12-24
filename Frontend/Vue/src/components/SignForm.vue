@@ -20,7 +20,7 @@
                     <form class="forms_form" id="login_form">
                         <fieldset class="forms_fieldset">
                             <div class="forms_field">
-                                <input type="name" placeholder="Username or email" class="forms_field-input" v-model="state.login.username" required autofocus />
+                                <input type="name" placeholder="Username or email" class="forms_field-input" v-model="state.login.email" required autofocus />
                                 <span class="text-danger"><em>{{ state.username_error }}</em></span>
                             </div>
                             <div class="forms_field">
@@ -88,7 +88,7 @@
             };
 
             const state = reactive({
-                login: { username: "",  password: "" },
+                login: { email: "",  password: "" },
                 register: { username: "", email: "",  password: "", password_2: "" },
                 error_login: { username: "", password: "" },
                 error_register: { username: "", email: "", password: "", password_2: "" },
@@ -106,8 +106,8 @@
             state.error_register = useVuelidate(rules, state.register);
 
             function login() {
-                if (state.error_login.username.$invalid == true) {
-                    if (state.error_login.username.$model != "") {
+                if (state.error_login.email.$invalid == true) {
+                    if (state.error_login.email.$model != "") {
                         state.username_error = "*Email format or Username is invalid. Minimum 4 characters";
                     } else {
                         state.username_error = "*Email or Username is required";
@@ -118,7 +118,8 @@
                         state.passw_error = "*Password is required"
                     } else {
                         state.passw_error = "";
-                        emit('onSubmit', state.login);
+                        const data = { email: state.login.email, password: state.login.password };
+                        emit('onSubmit', data);
                     }
                 }
             }

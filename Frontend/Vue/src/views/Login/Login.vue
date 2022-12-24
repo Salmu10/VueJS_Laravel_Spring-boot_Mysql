@@ -4,17 +4,17 @@
 
 <script>
     import SignForm from '../../components/SignForm.vue';
-    import { useRouter } from 'vue-router';
+    import Constant from '../../Constant.js';
+    import { useStore } from 'vuex';
 
     export default {
         components: { SignForm },
         setup() {
-
-            const router = useRouter();
+            const store = useStore();
 
             const login = (user) => {
                 console.log(user);
-                router.push({ name: 'home' })
+                store.dispatch("user/" + Constant.LOGIN, user);
             }
 
             return { login };    

@@ -12,8 +12,9 @@
                     <router-link class="link" to="/home">Home</router-link>
                     <router-link class="link" to="/reserve">Reserve</router-link>
                     <router-link class="link" to="/dashboard">PAdmin</router-link>
-                    <!-- <router-link class="link" to="/login">Login</router-link> -->
-                    <router-link class="link" to="/register">SignUp</router-link>
+                    <router-link class="link" to="/login" v-if="!state.isLogged">Login</router-link>
+                    <!-- <router-link class="link" to="/register" v-if="!state.isLogged">SignUp</router-link> -->
+                    <a class="link" src="#" v-if="state.isLogged" @click="logout()">Logout</a>
                 </div>
             </nav>
         </div>
@@ -24,11 +25,20 @@
 
     import { useRouter } from 'vue-router';
     import search from './search.vue';
+    import { useStore } from 'vuex';
+    import { reactive, computed } from 'vue';
+    import Constant from '../Constant.js';
 
     export default {
         components: { search },
         setup() {
             const router = useRouter();
+            const store = useStore();
+
+            const state = reactive({
+                isAdmin: computed(() => store.getters['user/GetIsAdmin']),
+                isLogged: computed(() => store.getters['user/GetIsAuth']),
+            });
 
             const apply_search = (search) => {
                 let filters = { categories: [search], capacity: 0, table_name: "", page: 1, limit: 3 };
@@ -37,7 +47,11 @@
                 setTimeout(() => { window.location.reload(); }, 500);
             }
 
-            return { apply_search }
+            function logout() {
+                store.dispatch(`user/${Constant.LOGOUT}`);
+            }
+
+            return { state, apply_search, logout }
         }
     }
 
@@ -102,6 +116,7 @@
         text-transform: uppercase;
         font-weight: bold;
         color: #FB1D26;
+        cursor: pointer;
     }
 
     a:visited, a:active, a:hover {

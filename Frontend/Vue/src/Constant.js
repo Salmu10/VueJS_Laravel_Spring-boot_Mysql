@@ -13,4 +13,9 @@ export default {
     UPDATE_CATEGORY: "UpdateCategory",
     DELETE_CATEGORY: "DeleteCategory",
 
+    //USER
+    LOGIN: "Login",
+    REGISTER: "Register",
+    LOGOUT: "Logout"
+
 }

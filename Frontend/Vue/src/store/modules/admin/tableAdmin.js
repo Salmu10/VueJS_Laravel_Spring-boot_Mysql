@@ -60,8 +60,6 @@ export const tableAdmin = {
         [Constant.ADD_TABLE]: (store, payload) => {
             TableServiceAdmin.CreateTable(payload.table)
             .then(function (res) {
-                console.log(res);
-                console.log(res.data);
                 if (res.status === 201) {
                     store.commit(Constant.ADD_TABLE, res.data.data);
                 }

@@ -5,9 +5,9 @@ import App from './App.vue';
 import store from "./store";
 import router from "./router";
 import vSelect from 'vue-select';
+import Toaster from "@meforma/vue-toaster";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-// import './assets';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 library.add(faSearch);
@@ -15,6 +15,7 @@ library.add(faSearch);
 const app = createApp(App);
 app.use(router);
 app.use(store);
+app.use(Toaster);
 app.component('v-select', vSelect);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
