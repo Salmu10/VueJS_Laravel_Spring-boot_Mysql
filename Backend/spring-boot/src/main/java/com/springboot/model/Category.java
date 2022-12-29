@@ -21,11 +21,10 @@ public class Category {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    }, mappedBy = "categories")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,  CascadeType.MERGE }, mappedBy = "categories")
+    
     @JsonIgnore
+
     private Set<Mesa> tables = new HashSet<>();
 
     public Category() { }

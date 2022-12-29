@@ -34,16 +34,12 @@ public class TableController {
 			TableParams.setTable_name(TableParams.getTable_name() + '%');
 			Integer offset = (TableParams.getPage() - 1) * TableParams.getLimit();
 			List<Mesa> tables = new ArrayList<Mesa>();
-
-			// System.out.println("Category: " + Arrays.toString(TableParams.getCategories()));
-
 			// Find by only capacity
 			if (TableParams.getCapacity() > 0) {
 				tableRepository.find_capacity(TableParams.getCapacity(), TableParams.getTable_name(), TableParams.getLimit(), offset).forEach(tables::add);
 			}
 			// Find by only categories
 			else if (TableParams.getCategories().length > 0 && TableParams.getCapacity() == 0) {
-				// System.out.println("Category: ");
 				tableRepository.find_categories(TableParams.getCategories(), TableParams.getTable_name(), TableParams.getLimit(), offset).forEach(tables::add);
 			}
 			// Find available tables

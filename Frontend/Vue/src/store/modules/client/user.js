@@ -3,7 +3,7 @@ import router from '../../../router/index.js';
 import UserService from "../../../services/client/UserService";
 import { createToaster } from "@meforma/vue-toaster";
 
-const toaster = createToaster({ "position": "top-right", "duration": 2000 });
+const toaster = createToaster({ "position": "top-right", "duration": 4000 });
 
 export const user = {
     namespaced: true,
@@ -13,6 +13,12 @@ export const user = {
         isAdmin: false
     },
     mutations: {
+        [Constant.REGISTER]: (state, payload) => {
+            if (payload) {
+                toaster.success('Registered successfuly. Login for now.');
+                router.push({ name: 'login' });
+            }
+        },
         [Constant.LOGIN]: (state, payload) => {
             if (payload) {
                 state.user = payload.user;
@@ -23,43 +29,56 @@ export const user = {
                 router.push({ name: 'home' });
             }
         },
-        [Constant.REGISTER]: (state, payload) => {
-            if (payload) {
-                console.log(payload);
-                console.log('Register successfuly');
-                toaster.success('Register successfuly');
-                router.push({ name: 'login' });
-            }
-        },
         [Constant.LOGOUT]: (state) => {
             state.user = {};
             state.isAuth = false;
             state.isAdmin = false;
             localStorage.removeItem('token');
             localStorage.removeItem('isAuth');
-            // localStorage.removeItem('token_admin');
-            // localStorage.removeItem('isAdmin');
+            localStorage.removeItem('tokenAdmin');
+            localStorage.removeItem('isAdmin');
             toaster.success('Loged out successfuly');
             router.push({ name: 'home' });
         },
+        [Constant.LOGIN_ADMIN]: (state, payload) => {
+            if (payload) {
+                localStorage.setItem("tokenAdmin", payload.token);
+                localStorage.setItem("isAdmin", true);
+                state.user = payload.user;
+                state.isAdmin = true;
+                toaster.success('Admin loged successfuly');
+                router.push({ name: 'home' });
+            }
+        },
     },
     actions: {
+        [Constant.REGISTER]: (store, payload) => {
+            UserService.Register(payload)
+            .then(function (res) {
+                if (res.status === 200) {
+                    store.commit(Constant.REGISTER, true);
+                }
+            })
+            .catch(function () {
+                toaster.error('The username or email already exists');
+            })
+        },
         [Constant.LOGIN]: (store, payload) => {
             UserService.Login(payload)
             .then(function (res) {
                 if (res.status === 200) {
                     store.commit(Constant.LOGIN, res.data);
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-        },
-        [Constant.REGISTER]: (store, payload) => {
-            UserService.Register(payload)
-            .then(function (res) {
-                if (res.status === 200) {
-                    store.commit(Constant.REGISTER, res.data);
+                    if (res.data.user.type == "admin") {
+                        UserService.Login_admin(payload)
+                        .then(function (response) {
+                            if (response.status === 200) {
+                                store.commit(Constant.LOGIN_ADMIN, response.data);
+                            }
+                        })
+                        .catch(function () {
+                            toaster.error('Admin login error.');
+                        })
+                    }
                 }
             })
             .catch(function (error) {

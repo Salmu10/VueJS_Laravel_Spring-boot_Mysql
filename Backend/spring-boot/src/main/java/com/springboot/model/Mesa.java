@@ -26,8 +26,7 @@ public class Mesa {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 
-    @JoinTable(name = "categories_tables", joinColumns = { @JoinColumn(name = "id_table") }, inverseJoinColumns = {
-            @JoinColumn(name = "id_category") })
+    @JoinTable(name = "categories_tables", joinColumns = { @JoinColumn(name = "id_table") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
 
     private Set<Category> categories = new HashSet<>();
 

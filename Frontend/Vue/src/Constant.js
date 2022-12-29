@@ -16,6 +16,6 @@ export default {
     //USER
     LOGIN: "Login",
     REGISTER: "Register",
-    LOGOUT: "Logout"
-
+    LOGOUT: "Logout",
+    LOGIN_ADMIN: "Login_admin",
 }
