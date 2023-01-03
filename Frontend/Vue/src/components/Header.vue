@@ -11,10 +11,10 @@
                 <div class="nav_buttons">
                     <router-link class="link" to="/home">Home</router-link>
                     <router-link class="link" to="/reserve">Reserve</router-link>
-                    <router-link class="link" to="/dashboard">PAdmin</router-link>
                     <router-link class="link" to="/login" v-if="!state.isLogged">Login</router-link>
-                    <!-- <router-link class="link" to="/register" v-if="!state.isLogged">SignUp</router-link> -->
+                    <router-link class="link" to="/dashboard" v-if="state.isAdmin">PAdmin</router-link>
                     <a class="link" src="#" v-if="state.isLogged" @click="logout()">Logout</a>
+                    <!-- <a class="link" src="#" @click="logout()">Logout</a> -->
                 </div>
             </nav>
         </div>

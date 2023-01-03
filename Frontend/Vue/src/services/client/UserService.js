@@ -20,4 +20,12 @@ export default {
         return Api(`${secret.LARAVEL_APP_URL}`).post('login', data);
     },
 
+    Logout_admin() {
+        return Api(`${secret.LARAVEL_APP_URL}`).post('logout');
+    },
+
+    checkAdmin() {
+        return Api(`${secret.LARAVEL_APP_URL}`).get('isAdmin');
+    },
+
 }

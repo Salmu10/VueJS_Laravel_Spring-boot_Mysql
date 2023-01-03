@@ -8,16 +8,17 @@ export default (URL) => {
     const store = useStore();
     const toaster = createToaster({ "position": "top-right", "duration": 1500 });
 
-    const axiosInstance = axios.create({
+    const api = axios.create({
         baseURL: URL
     })
 
     const token = localStorage.getItem('token');
     if (token) {
-        axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        // console.log(api.defaults.headers.common.Authorization);
     } 
 
-    axiosInstance.interceptors.response.use(
+    api.interceptors.response.use(
         (response) => response,
         (error) => {
         console.log(error)
@@ -29,5 +30,5 @@ export default (URL) => {
         }
     )
 
-    return axiosInstance
+    return api
 }

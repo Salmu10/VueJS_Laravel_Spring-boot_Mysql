@@ -46,6 +46,15 @@
             });
 
             const send_filters = () => {
+                if (state.filters.capacity == 1) {
+                    state.filters.capacity = 2;
+                } else if (state.filters.capacity == 3) {
+                    state.filters.capacity = 4;
+                } else if (state.filters.capacity == 5) {
+                    state.filters.capacity = 6;
+                } else if (state.filters.capacity == 7 || state.filters.capacity >= 9) {
+                    state.filters.capacity = 8;
+                }
                 emit('filters', state.filters);
             }
 

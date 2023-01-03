@@ -34,13 +34,18 @@ public class TableController {
 			TableParams.setTable_name(TableParams.getTable_name() + '%');
 			Integer offset = (TableParams.getPage() - 1) * TableParams.getLimit();
 			List<Mesa> tables = new ArrayList<Mesa>();
+			
 			// Find by only capacity
-			if (TableParams.getCapacity() > 0) {
+			if (TableParams.getCapacity() > 0 && TableParams.getCategories().length == 0) {
 				tableRepository.find_capacity(TableParams.getCapacity(), TableParams.getTable_name(), TableParams.getLimit(), offset).forEach(tables::add);
 			}
 			// Find by only categories
 			else if (TableParams.getCategories().length > 0 && TableParams.getCapacity() == 0) {
 				tableRepository.find_categories(TableParams.getCategories(), TableParams.getTable_name(), TableParams.getLimit(), offset).forEach(tables::add);
+			}
+			// Find by categories and capacity
+			else if (TableParams.getCategories().length > 0 && TableParams.getCapacity() > 0) {
+				tableRepository.find_categories_capacity(TableParams.getCategories(), TableParams.getTable_name(), TableParams.getCapacity(), TableParams.getLimit(), offset).forEach(tables::add);
 			}
 			// Find available tables
 			else {
@@ -67,6 +72,10 @@ public class TableController {
 			// Find by only categories
 			else if (TableParams.getCategories().length > 0 && TableParams.getCapacity() == 0) {
 				total_tables = tableRepository.find_categories_tables(TableParams.getCategories(), TableParams.getTable_name());
+			}
+			// Find by categories and capacity
+			else if (TableParams.getCategories().length > 0 && TableParams.getCapacity() > 0) {
+				total_tables = tableRepository.find_categories_capacity_tables(TableParams.getCategories(), TableParams.getTable_name(), TableParams.getCapacity());
 			}
 			// Find available tables
 			else {
