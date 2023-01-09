@@ -61,6 +61,8 @@
             font-weight: bold;
             text-transform: uppercase;
             color: #333;
+            padding: 20px;
+            margin-top: 10px;
         }
     }
 

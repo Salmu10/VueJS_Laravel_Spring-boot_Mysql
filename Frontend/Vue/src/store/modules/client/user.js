@@ -50,6 +50,15 @@ export const user = {
                 router.push({ name: 'home' });
             }
         },
+        [Constant.PROFILE]: (state, payload) => {
+            if (payload) {
+                state.user = payload;
+                state.isAuth = true;
+                state.isAdmin = payload.type === 'admin';
+                localStorage.setItem("isAuth", true);
+                localStorage.setItem("isAdmin", payload.type === 'admin');
+            }
+        },
     },
     actions: {
         [Constant.REGISTER]: (store, payload) => {
@@ -91,6 +100,21 @@ export const user = {
                 store.commit(Constant.LOGOUT);
             } catch (error) {
                 console.log(error);
+            }
+        },
+        [Constant.PROFILE]: (store) => {
+            try {
+                UserService.Profile()
+                .then(function (res) {
+                    if (res.status === 200) {
+                        store.commit(Constant.PROFILE, res.data);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+            } catch (error) {
+                console.error(error);
             }
         },
     },

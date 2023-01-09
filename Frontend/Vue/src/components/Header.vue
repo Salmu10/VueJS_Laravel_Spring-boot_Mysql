@@ -11,9 +11,10 @@
                 <div class="nav_buttons">
                     <router-link class="link" to="/home">Home</router-link>
                     <router-link class="link" to="/reserve">Reserve</router-link>
-                    <router-link class="link" to="/login" v-if="!state.isLogged">Login</router-link>
+                    <router-link class="link" to="/login" v-if="!state.isLoged">Login</router-link>
+                    <router-link class="link" to="/register" v-if="!state.isLoged">Register</router-link>
                     <router-link class="link" to="/dashboard" v-if="state.isAdmin">PAdmin</router-link>
-                    <a class="link" src="#" v-if="state.isLogged" @click="logout()">Logout</a>
+                    <a class="link" src="#" v-if="state.isLoged" @click="logout()">Logout</a>
                     <!-- <a class="link" src="#" @click="logout()">Logout</a> -->
                 </div>
             </nav>
@@ -37,7 +38,7 @@
 
             const state = reactive({
                 isAdmin: computed(() => store.getters['user/GetIsAdmin']),
-                isLogged: computed(() => store.getters['user/GetIsAuth']),
+                isLoged: computed(() => store.getters['user/GetIsAuth']),
             });
 
             const apply_search = (search) => {

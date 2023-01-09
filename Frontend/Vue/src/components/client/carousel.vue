@@ -57,8 +57,8 @@
             }
             .category_name {
                 display: block;
-                padding-top: 20px;
-                font-size: 25px;
+                padding-top: 10px;
+                font-size: 20px;
                 font-weight: bold;
                 text-transform: uppercase;
             }

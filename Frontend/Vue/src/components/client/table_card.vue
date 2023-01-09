@@ -1,5 +1,5 @@
 <template>
-    <div class="table_card">
+    <div class="table_card" @click="reserve_table(table.id)">
         <img :src="table.image" alt=""/>
         <div class="desc_table">
             <h1>{{ table.table_name }}</h1>
@@ -17,12 +17,19 @@
 </template>
 
 <script>
+    import { useRouter } from 'vue-router';
 
     export default {
         props: {
             table: Object
         },
         setup() {
+            const router = useRouter();
+            const reserve_table = (id) => {
+                // console.log(id);
+                router.push({ name: "details", params: { id } });
+            }
+            return { reserve_table }
         }
     }
 </script>

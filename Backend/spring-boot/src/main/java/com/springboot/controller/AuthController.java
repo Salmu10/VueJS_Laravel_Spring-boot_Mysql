@@ -15,11 +15,13 @@ import com.springboot.payload.UserToken;
 import com.springboot.payload.MessageResponse;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -84,6 +86,18 @@ public class AuthController {
         } catch (Exception e) {
             System.err.println(e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<User> profile() {
+        try {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = UserRepository.findByUsername(userDetails.getUsername()).get();
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            System.err.println(e);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 }

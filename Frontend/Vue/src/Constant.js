@@ -18,4 +18,5 @@ export default {
     REGISTER: "Register",
     LOGOUT: "Logout",
     LOGIN_ADMIN: "Login_admin",
+    PROFILE: "Profile",
 }

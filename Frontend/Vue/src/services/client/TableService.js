@@ -27,5 +27,10 @@ export default {
             }
         });
         return Api(`${secret.SPRING_APP_URL}`).get(`tables_count?${params_filter.join('&')}`);
-    }
+    },
+
+    get_one_table(id) {
+        return Api(`${secret.SPRING_APP_URL}`).get('table/' + id);
+    },
+
 }

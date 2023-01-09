@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useStore } from "vuex";
 import { createToaster } from "@meforma/vue-toaster";
 import Constant from '../Constant.js';
-
+import secret from "../secret";
 
 export default (URL) => {
     const store = useStore();
@@ -12,7 +12,9 @@ export default (URL) => {
         baseURL: URL
     })
 
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
+    const token = URL === secret.LARAVEL_APP_URL ? localStorage.getItem('tokenAdmin') : localStorage.getItem('token');
+
     if (token) {
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
         // console.log(api.defaults.headers.common.Authorization);

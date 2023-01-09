@@ -6,6 +6,7 @@ const routes = [
   { path: "/home", name: "home", component: () => import('../views/Home') },
   { path: "/reserve", name: "reserve", component: () => import('../views/Reserve.vue') },
   { path: "/reserve/:filters", name: "reserve_filters", component: () => import('../views/Reserve.vue') },
+  { path: "/reserve/details/:id", name: "details", component: () => import('../views/Details.vue') },
   { path: "/dashboard", name: "dashboard", component: () => import('../views/Dashboard.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/dashboard/categories", name: "categories_list", component: () => import('../views/Admin/Category/Categories_list.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/dashboard/categories/add", name: "category_add", component: () => import('../views/Admin/Category/CategoryAdd.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },

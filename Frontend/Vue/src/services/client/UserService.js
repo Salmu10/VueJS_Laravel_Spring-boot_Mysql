@@ -24,6 +24,10 @@ export default {
         return Api(`${secret.LARAVEL_APP_URL}`).post('logout');
     },
 
+    Profile() {
+        return Api(`${secret.SPRING_APP_URL}`).get('profile');
+    },
+
     checkAdmin() {
         return Api(`${secret.LARAVEL_APP_URL}`).get('isAdmin');
     },
