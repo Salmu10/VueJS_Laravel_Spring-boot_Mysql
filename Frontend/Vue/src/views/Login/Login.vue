@@ -13,7 +13,6 @@
             const store = useStore();
 
             const login = (user) => {
-                console.log(user);
                 store.dispatch("user/" + Constant.LOGIN, user);
             }
 

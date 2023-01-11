@@ -30,6 +30,7 @@
     import Constant from '../Constant';
     import { createToaster } from "@meforma/vue-toaster";
     import reserve_table from '../components/client/reserve_table.vue';
+    import { useReserve } from '../composables/useReserve';
 
     export default {
         components: { reserve_table },
@@ -49,8 +50,9 @@
             })
 
             const reserve_emit = (data) => {
-                if (stateOne.isLoged) {
-                    console.log(data);
+                if (state.isLoged) {
+                    useReserve(data);
+                    router.push({ name: 'home' });
                 } else {
                     toaster.info('You must be loged to make a reserve.');
                 }

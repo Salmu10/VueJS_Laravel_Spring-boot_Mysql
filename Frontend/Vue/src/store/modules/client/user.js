@@ -91,7 +91,8 @@ export const user = {
                 }
             })
             .catch(function (error) {
-                console.log(error)
+                // console.log(error)
+                toaster.error('Username or password are incorrect.');
             })
         },
         [Constant.LOGOUT]: (store) => {

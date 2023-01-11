@@ -8,6 +8,7 @@ import vSelect from 'vue-select';
 import Toaster from "@meforma/vue-toaster";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { SetupCalendar, DatePicker } from 'v-calendar';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 library.add(faSearch);
@@ -18,4 +19,8 @@ app.use(store);
 app.use(Toaster);
 app.component('v-select', vSelect);
 app.component('font-awesome-icon', FontAwesomeIcon);
+
 app.mount('#app');
+
+app.use(SetupCalendar, {})
+app.component('DatePicker', DatePicker);

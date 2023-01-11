@@ -68,7 +68,7 @@
     import { reactive, getCurrentInstance } from 'vue'; //getCurrentInstance
     import { useRouter } from 'vue-router';
     import { useVuelidate } from '@vuelidate/core';
-    import { required, email, minLength } from '@vuelidate/validators';
+    import { required, email, minLength, maxLength } from '@vuelidate/validators';
 
     export default {
         props: {
@@ -96,7 +96,7 @@
             })
 
             const rules = {
-                username: { required, minLength: minLength(4) },
+                username: { required, minLength: minLength(4), maxLength: maxLength(10) },
                 email: { required, email },
                 password: { required, minLength: minLength(5) },
                 password_2: { required, minLength: minLength(5) },
@@ -129,7 +129,7 @@
                 let validate = true;
 
                 if (state.error_register.username.$invalid == true) {
-                    state.username_error = "*Username is requiered and minimum 4 characters";
+                    state.username_error = "*Username is requiered and compresed with 4 to 10 characters";
                     validate = false;
                 } else {
                     state.username_error = "";

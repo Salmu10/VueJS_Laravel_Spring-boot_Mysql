@@ -6,7 +6,7 @@
                     <img src="../assets/logo.png" alt="logo">
                 </router-link>
             </div>
-            <search @search="apply_search" />
+            <search @search="apply_search"/>
             <nav>
                 <div class="nav_buttons">
                     <router-link class="link" to="/home">Home</router-link>
@@ -14,6 +14,9 @@
                     <router-link class="link" to="/login" v-if="!state.isLoged">Login</router-link>
                     <router-link class="link" to="/register" v-if="!state.isLoged">Register</router-link>
                     <router-link class="link" to="/dashboard" v-if="state.isAdmin">PAdmin</router-link>
+                    <!-- <router-link class="link" to="" v-if="state.isAdmin">Admin</router-link> -->
+                    <a class="link" src="#" v-if="state.isAdmin">Admin</a>
+                    <a class="link" src="#" v-if="state.isLoged && !state.isAdmin" @click="">{{ state.profile.username }}</a>
                     <a class="link" src="#" v-if="state.isLoged" @click="logout()">Logout</a>
                     <!-- <a class="link" src="#" @click="logout()">Logout</a> -->
                 </div>
@@ -39,6 +42,7 @@
             const state = reactive({
                 isAdmin: computed(() => store.getters['user/GetIsAdmin']),
                 isLoged: computed(() => store.getters['user/GetIsAuth']),
+                profile: computed(() => store.getters['user/GetUser']),
             });
 
             const apply_search = (search) => {
@@ -67,7 +71,6 @@
         width: 100%;
         background-color: $color_pricipal;
         padding: 0.5em 0;
-        // margin-bottom: 1em;
     }
 
     .header-container {

@@ -15,7 +15,6 @@ export const table = {
         },
         [Constant.INITIALIZE_ONE_TABLE]: (state, payload) => {
             if (payload) {
-                // console.log(payload);
                 state.oneTable = payload;
             }
         },

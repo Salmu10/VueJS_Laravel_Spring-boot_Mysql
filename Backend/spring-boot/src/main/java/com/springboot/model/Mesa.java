@@ -2,9 +2,19 @@ package com.springboot.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.List;
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+
 @Table(name = "tables")
 
 public class Mesa {
@@ -30,51 +40,6 @@ public class Mesa {
 
     private Set<Category> categories = new HashSet<>();
 
-    public Mesa() { }
-
-    public Mesa(String table_name, Integer capacity, Boolean available, String image) {
-        this.table_name = table_name;
-        this.capacity = capacity;
-        this.available = available;
-        this.image = image;
-    }
-
-    public Set<Category> getCategories() {
-        return this.categories;
-    }
-
-    public long getId() {
-        return this.id;
-    }
-
-    public String getTable_name() {
-        return this.table_name;
-    }
-
-    public Integer getCapacity() {
-        return this.capacity;
-    }
-
-    public Boolean isAvailable() {
-        return this.available;
-    }
-
-    public Boolean getavailable() {
-        return this.available;
-    }
-
-    public String getImage() {
-        return this.image;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                " id='" + getId() + "'" +
-                ", table_name='" + getTable_name() + "'" +
-                ", capacity='" + getCapacity() + "'" +
-                ", available='" + isAvailable() + "'" +
-                ", image='" + getImage() + "'" +
-                "}";
-    }
+    @OneToMany(mappedBy = "table", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserve> reserves;
 }

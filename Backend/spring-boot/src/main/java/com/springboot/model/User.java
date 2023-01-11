@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -37,4 +38,7 @@ public class User {
 
     @Column(name = "is_active")
     private Boolean is_active = true;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserve> reserves;
 }
