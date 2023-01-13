@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import ReserveService from '../services/client/ReserveService';
+import ReserveServiceAdmin from '../services/admin/ReserveServiceAdmin';
 import { createToaster } from "@meforma/vue-toaster";
 
 const toaster = createToaster({ "position": "top-right", "duration": 4000 });
@@ -35,4 +36,14 @@ export const useAvailable_type = (data) => {
         })
         .catch(error => console.error(error))
     return type;
+};
+
+export const useAdmin_notifications = () => {
+    const notifications = ref(0);
+    ReserveServiceAdmin.get_admin_notifications()
+        .then(res => {
+            notifications.value = res.data;
+        })
+        .catch(error => console.error(error))
+    return notifications;
 };

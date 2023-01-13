@@ -17,20 +17,6 @@ class TableResource extends JsonResource {
             array_push($categories, $category);
         }
 
-        $reserves = [];
-        foreach ($this->reserves as $res) {
-            $reserve = [
-                "id" => $res->id,
-                "id_user" => $res->id_user,
-                "id_table" => $res->id_table,
-                "reserve_date" => $res->reserve_date,
-                "reserve_type" => $res->reserve_type,
-                "capacity" => $res->capacity,
-                "confirmed" => $res->confirmed,
-            ];
-            array_push($reserves, $reserve);
-        }
-
         return [
             'id' => $this->id,
             'table_name' => $this->table_name,
@@ -38,7 +24,6 @@ class TableResource extends JsonResource {
             'available' => $this->available,
             'image' => $this->image,
             'categories' => $categories,
-            'reserves' => $reserves
         ];
     }
 }

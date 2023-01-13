@@ -17,6 +17,11 @@ class ReserveController extends Controller {
     public function index() {
         return ReserveResource::collection(Reserve::all());
     }
+    
+    public function pending() {
+        $notifications = Reserve::where('confirmed', false)->get()->count();
+        return response()->json($notifications);
+    }
 
     public function store(StoreReserveRequest $request) {
         return ReserveResource::make(Reserve::create($request->validated()));

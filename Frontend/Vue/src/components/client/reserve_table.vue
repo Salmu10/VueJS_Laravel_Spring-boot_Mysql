@@ -112,8 +112,6 @@
                 
                 if (state.date == null) {
                     state.errors.error_date = "*Invalid date. Please select the date of the reserve";
-                    // state.dinner_check = 1;
-                    // state.launch_check = 1;
                 } else {
                     state.disabled_type = "";
                     state.errors.error_date = "";

@@ -4,6 +4,8 @@
         <div class="buttons_box">
             <router-link to="/dashboard/categories" class="button">Categories List</router-link>
             <router-link to="/dashboard/tables" class="button">Tables List</router-link>
+            <router-link to="/dashboard/users" class="button">Users List</router-link>
+            <router-link to="/dashboard/reserves" class="button">Reserves List</router-link>
         </div>
     </div>
 </template>

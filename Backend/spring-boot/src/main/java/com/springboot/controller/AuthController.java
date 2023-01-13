@@ -50,6 +50,7 @@ public class AuthController {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already taken!"));
             } else {
                 user.setPassword(encoder.encode(user.getPassword()));
+                user.setImage("https://avatars.dicebear.com/api/adventurer/" + user.getUsername() + ".svg");
                 user.setType("client");
                 user.setIs_active(true);
                 UserRepository.save(user);

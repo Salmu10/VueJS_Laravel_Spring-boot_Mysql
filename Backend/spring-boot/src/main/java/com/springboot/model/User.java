@@ -34,7 +34,7 @@ public class User {
     private String type = "client";
 
     @Column(name = "image")
-    private String image = "https://avatars.dicebear.com/api/adventurer/salmu.svg";
+    private String image;
 
     @Column(name = "is_active")
     private Boolean is_active = true;

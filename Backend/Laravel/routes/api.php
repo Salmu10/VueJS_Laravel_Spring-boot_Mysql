@@ -23,6 +23,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('category', CategoryController::class);
     Route::resource('user', AuthController::class);
     Route::resource('reserve', ReserveController::class);
+    Route::get('pending', [ReserveController::class, 'pending']);
 });
 
 // Route::resource('table', TableController::class);
@@ -33,4 +34,3 @@ Route::group(['middleware' => ['admin']], function () {
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
-Route::get('isAdmin', [AuthController::class, 'isAdmin']);

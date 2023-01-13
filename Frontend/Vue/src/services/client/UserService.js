@@ -16,20 +16,7 @@ export default {
         return Api(`${secret.SPRING_APP_URL}`).post('logout');
     },
 
-    Login_admin(data) {
-        return Api(`${secret.LARAVEL_APP_URL}`).post('login', data);
-    },
-
-    Logout_admin() {
-        return Api(`${secret.LARAVEL_APP_URL}`).post('logout');
-    },
-
     Profile() {
         return Api(`${secret.SPRING_APP_URL}`).get('profile');
     },
-
-    checkAdmin() {
-        return Api(`${secret.LARAVEL_APP_URL}`).get('isAdmin');
-    },
-
 }

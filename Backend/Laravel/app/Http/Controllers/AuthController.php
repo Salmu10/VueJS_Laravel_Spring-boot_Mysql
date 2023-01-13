@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -40,14 +41,41 @@ class AuthController extends Controller {
         return UserResource::make(User::where('id', $id)->firstOrFail());
     }
 
-    public function update(Request $request, $id) {
-        $update = User::where('id', $id)->update($request->validated());
-        
-        if ($update == 1) {
-            return response()->json([ "Message" => "Updated correctly" ]);
-        } else {
-            return response()->json([ "Status" => "Not found" ], 404);
-        };
+    public function update(UpdateUserRequest $request, $id) {
+
+        $user = User::where('id', $id)->firstOrFail();
+
+        // Lo he hecho así por si solo modifica el username o el email y no ambos.
+        if ($user->username != $request->validated()['username']) {
+            $username_exist = User::where('username', $request->validated()['username'])->get()->count();
+            if ($username_exist === 1) {
+                return response()->json([ "Status" => "Username taken" ], 400);
+            }
+            $user->username = $request->validated()['username'];
+        }
+
+        if ($user->email != $request->validated()['email']) {
+            $email_exist = User::where('email', $request->validated()['email'])->get()->count();
+            if ($email_exist === 1) {
+                return response()->json([ "Status" => "Email taken" ], 400);
+            }
+            $user->email = $request->validated()['email'];
+        }
+
+        if ($user->password != $request->validated()['password']) {
+            $user->password = bcrypt($request->validated()['password']);
+        }
+
+        if (isset($request->validated()['image'])) {
+            $user->image = $request->validated()['image'];
+        }
+
+        if (isset($request->validated()['is_active'])) {
+            $user->is_active = $request->validated()['is_active'];
+        }
+
+        $user->save();
+        return UserResource::make($user);
     }
 
     public function destroy($id) {
@@ -92,6 +120,6 @@ class AuthController extends Controller {
 
     public function logout() {
         Auth::logout();
-        return response()->json(['message' => 'Successfully logout']);
+        return response()->json(['message' => 'Successfully logout'], 200);
     }
 }

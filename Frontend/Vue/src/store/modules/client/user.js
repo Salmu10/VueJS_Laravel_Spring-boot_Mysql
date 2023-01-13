@@ -1,6 +1,7 @@
 import Constant from '../../../Constant';
 import router from '../../../router/index.js';
 import UserService from "../../../services/client/UserService";
+import UserServiceAdmin from "../../../services/admin/UserServiceAdmin";
 import { createToaster } from "@meforma/vue-toaster";
 
 const toaster = createToaster({ "position": "top-right", "duration": 4000 });
@@ -78,7 +79,7 @@ export const user = {
                 if (res.status === 200) {
                     store.commit(Constant.LOGIN, res.data);
                     if (res.data.user.type == "admin") {
-                        UserService.Login_admin(payload)
+                        UserServiceAdmin.Login_admin(payload)
                         .then(function (response) {
                             if (response.status === 200) {
                                 store.commit(Constant.LOGIN_ADMIN, response.data);

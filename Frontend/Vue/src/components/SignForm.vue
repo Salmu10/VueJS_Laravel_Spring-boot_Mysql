@@ -20,7 +20,7 @@
                     <form class="forms_form" id="login_form">
                         <fieldset class="forms_fieldset">
                             <div class="forms_field">
-                                <input type="name" placeholder="Username or email" class="forms_field-input" v-model="state.login.username" required autofocus />
+                                <input type="name" placeholder="Username" class="forms_field-input" v-model="state.login.username" required autofocus />
                                 <span class="text-danger"><em>{{ state.username_error }}</em></span>
                             </div>
                             <div class="forms_field">

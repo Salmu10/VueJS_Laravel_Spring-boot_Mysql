@@ -14,6 +14,12 @@ const routes = [
   { path: "/dashboard/tables", name: "tables_list", component: () => import('../views/Admin/Table/Tables_list.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/dashboard/tables/add", name: "table_add", component: () => import('../views/Admin/Table/TableAdd.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/dashboard/tables/update/:id", name: "table_update", component: () => import('../views/Admin/Table/TableUpdate.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/users", name: "users_list", component: () => import('../views/Admin/User/Users_list.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/users/add", name: "user_add", component: () => import('../views/Admin/User/UserAdd.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/users/update/:id", name: "user_update", component: () => import('../views/Admin/User/UserUpdate.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/reserves", name: "reserves_list", component: () => import('../views/Admin/Reserve/Reserves_list.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/reserves/add", name: "reserve_add", component: () => import('../views/Admin/Reserve/ReserveAdd.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
+  { path: "/dashboard/reserves/update/:id", name: "reserve_update", component: () => import('../views/Admin/Reserve/ReserveUpdate.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/login", name: "login", component: () => import('../views/Login/Login.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } },
   { path: "/register", name: "register", component: () => import('../views/Login/Register.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } }
 ];

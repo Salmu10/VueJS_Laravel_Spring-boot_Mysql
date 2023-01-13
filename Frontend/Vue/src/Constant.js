@@ -19,4 +19,9 @@ export default {
     LOGOUT: "Logout",
     LOGIN_ADMIN: "Login_admin",
     PROFILE: "Profile",
+    INITIALIZE_USER: "InitializeUser",
+    INITIALIZE_ONE_USER: "InitializeOneUser",
+    ADD_USER: "AddUser",
+    UPDATE_USER: "UpdateUser",
+    DELETE_USER: "DeleteUser",
 }
