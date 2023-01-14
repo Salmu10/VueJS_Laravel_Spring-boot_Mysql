@@ -20,20 +20,16 @@ class User extends Authenticatable implements JWTSubject {
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
             'type' => isset($fields['type']) ? $fields['type'] : 'client',
-            'image' =>  isset($fields['image']) ? $fields['image'] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-            'is_active' =>  isset($fields['is_active']) ? $fields['is_active'] : true, //CHANGE TO FALSE, TRUE ONLY FOR TESTING
+            'image' =>  isset($fields['image']) ? $fields['image'] : 'https://avatars.dicebear.com/api/adventurer/'.$fields['username'].'.svg',
+            'is_active' =>  isset($fields['is_active']) ? $fields['is_active'] : true,
         ]);
     } 
 
-    //https://avatars.dicebear.com/api/adventurer/salmu10.svg
-
-    public function getJWTIdentifier()
-    {
+    public function getJWTIdentifier() {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
-    {
+    public function getJWTCustomClaims() {
         return [];
     }
 

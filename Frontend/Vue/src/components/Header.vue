@@ -62,7 +62,7 @@
                 if (state.isAdmin) {
                     state.notifications = useAdmin_notifications();
                 }
-            }, 200);
+            }, 100);
 
             const apply_search = (search) => {
                 let filters = { categories: [search], capacity: 0, table_name: "", page: 1, limit: 3 };

@@ -13,7 +13,7 @@
         </div>
         <div class="reserve_type">
             <label for='capacity' class="etiqueta">Reserve type:</label>
-                <input type="radio" :disabled="state.disabled_type == 'dinner'" name="type" value="dinner" v-model="state.res_type"> Dinner
+            <input type="radio" :disabled="state.disabled_type == 'dinner'" name="type" value="dinner" v-model="state.res_type"> Dinner
             <input type="radio" :disabled="state.disabled_type == 'launch'" name="type" value="launch" v-model="state.res_type"> Launch
             <br>
             <span class="text-danger"><em>{{ state.errors.error_type }}</em></span>

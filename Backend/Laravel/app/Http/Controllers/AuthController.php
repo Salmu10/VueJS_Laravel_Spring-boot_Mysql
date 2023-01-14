@@ -24,6 +24,9 @@ class AuthController extends Controller {
     }
 
     public function store(StoreUserRequest $request) {
+
+        // return response()->json([ $request->validated() ], 200);
+
         $email_exist = User::where('email', $request->validated()['email'])->get()->count();
         $user_exist = User::where('username', $request->validated()['username'])->get()->count();
 

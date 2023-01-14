@@ -2,35 +2,45 @@
     <div class="container">
         <div class="row">
             <div class="col p-3">
-                <h2>Create Table</h2>
+                <h2>Create User</h2>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label htmlFor="todo">Table Name :</label>
-                    <input type="text" class="form-control" v-model="state.table_local.table_name"/>
+                    <label for="username" class="etiqueta">Username:</label>
+                    <input type="text" id="username" class="form-control" v-model="state.user_local.username"/>
+                    <span class="text-danger"><em>{{ state.username_error }}</em></span>
                 </div>
                 <div class="form-group">
-                    <label htmlFor="desc">Capacity :</label>
-                    <input type="text" class="form-control" v-model="state.table_local.capacity"/> 
+                    <label for="email" class="etiqueta">Email:</label>
+                    <input type="text" id="email" class="form-control" v-model="state.user_local.email" placeholder="ejemplo@gmail.com"/>
+                    <span class="text-danger"><em>{{ state.email_error }}</em></span>
                 </div>
                 <div class="form-group">
-                    <label htmlFor="desc">Available :</label>
+                    <label for="password" class="etiqueta">Password:</label>
                     <br>
-                    <input type="checkbox" id="available" v-model="state.table_local.available"/>
+                    <input type="password" id="password" class="form-control" v-model="state.user_local.password"/>
+                    <span class="text-danger"><em>{{ state.passw_error }}</em></span>
                 </div>
                 <div class="form-group">
-                    <label htmlFor="desc">Image :</label>
-                    <input type="text" class="form-control" v-model="state.table_local.image"/> 
+                    <label for="password_2" class="etiqueta">Repeat password:</label>
+                    <br>
+                    <input type="password" id="password_2" class="form-control" v-model="state.user_local.password_2"/>
+                    <span class="text-danger"><em>{{ state.passw_2_error }}</em></span>
                 </div>
                 <div class="form-group">
-                    <label>Choose a category:</label>
-                    <v-select multiple v-model="state.table_local.categories" :options="state.categories"
-                    :getOptionLabel="categories => categories.category_name"/>
+                    <label for="image" class="etiqueta">Image:</label>
+                    <input type="text" id="image" class="form-control" v-model="state.user_local.image"/>
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary m-1" @click="add_table()">Create</button>
+                    <label for='type' class="etiqueta">User type: </label>
+                    <input type="radio" name="type" class="radio_button" value="client" v-model="state.user_local.type"> Client
+                    <input type="radio" name="type" class="radio_button" value="admin" v-model="state.user_local.type"> Admin
+                    <span class="text-danger d-block"><em>{{ state.type_error }}</em></span>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary m-1" @click="add_user()">Create</button>
                     <button type="button" class="btn btn-primary m-1" @click="cancel()">Cancel</button>
                 </div>
             </div>
@@ -43,38 +53,92 @@
     import { reactive, computed } from 'vue'
     import { useStore } from 'vuex'
     import { useRouter } from 'vue-router';
+    import { useVuelidate } from '@vuelidate/core';
+    import { required, email, minLength, maxLength, url } from '@vuelidate/validators';
   
     export default {
         setup() {
             const store = useStore();
             const router = useRouter();
 
-            store.dispatch("categoryAdmin/" + Constant.INITIALIZE_CATEGORY);
-
             const state = reactive({
-                table_local: { table_name: "", capacity: "", available: false, image: ""},
-                categories: computed(() => store.getters['categoryAdmin/GetCategories']),
+                user_local: { username: "", email: "", password: "", password_2: "", image: "", type: ""},
+                error_add: { username: "", email: "", password: "", password_2: "", image: "", type: ""},
             });
+
+            const rules = {
+                username: { required, minLength: minLength(4), maxLength: maxLength(10) },
+                email: { required, email },
+                password: { required, minLength: minLength(5) },
+                password_2: { required, minLength: minLength(5) },
+                image: { url },
+                type: { required }
+            }
+
+            state.error_add = useVuelidate(rules, state.user_local);
             
-            function add_table() {
+            function add_user() {
 
-                const cat = state.table_local.categories;
-                const cat_names = cat.map(item => item.category_name);
-                state.table_local.categories = cat_names;
+                let validate = true;
 
-                if (state.table_local.table_name.trim().length >= 2) {
-                    store.dispatch("tableAdmin/" + Constant.ADD_TABLE, { table : state.table_local });
-                    router.push({ name:"tables_list" });
+                if (state.error_add.username.$invalid == true) {
+                    state.username_error = "*Username is requiered and compresed with 4 to 10 characters";
+                    validate = false;
                 } else {
-                    alert('Ingrese la table. Mínimo 2 caracteres.');
+                    state.username_error = "";
+                }
+
+                if (state.error_add.email.$invalid == true) {
+                    state.email_error = "*Email format is incorrect and requierd";
+                    validate = false;
+                } else {
+                    state.email_error = "";
+                }
+
+                if (state.error_add.password.$invalid == true) {
+                    state.passw_error = "*Password is requierd and minimun 5 characters";
+                    validate = false;
+                } else {
+                    state.passw_error = "";
+                    if (state.error_add.password_2.$invalid == true) {
+                        state.passw_2_error = "*Passwords must match";
+                        validate = false;
+                    } else {    
+                        if (state.user_local.password != state.user_local.password_2) {
+                            state.passw_2_error = "*Passwords must match";
+                            validate = false;
+                        } else {
+                            state.passw_2_error = "";
+                        }
+                    }
+                }
+
+                if (state.error_add.image.$invalid == true) {
+                    state.image_error = "*The image must be an url";
+                    validate = false;
+                } else {
+                    state.image_error = "";
+                }
+
+                if (state.error_add.type.$invalid == true) {
+                    state.type_error = "*Type is requierd";
+                    validate = false;
+                } else {
+                    state.type_error = "";
+                }
+
+                if (validate == true) {
+                    console.log(state.user_local);
+                    store.dispatch("userAdmin/" + Constant.ADD_USER, { user: state.user_local });
+                    // router.push({ name:"users_list" });
                 }
             }
             
             function cancel() {
-                router.push({ name:"tables_list"});
+                router.push({ name:"users_list"});
             }
 
-            return { state, add_table, cancel }
+            return { state, add_user, cancel }
         }
     }
 </script>
@@ -84,50 +148,14 @@
     @import '../../../../node_modules/vue-select/dist/vue-select.css';
 
     .container {
-        min-height: 68vh;
+        min-height: 75vh;
         h2 {
             margin-top: 3%;
         }
-        select {
-            background-color: transparent;
-            border: none;
-            padding: 0 1em 0 0;
-            margin: 0;
-            width: 100%;
-            font-family: inherit;
-            font-size: inherit;
-            cursor: inherit;
-            line-height: inherit;
-            outline: none;
-            z-index: 1;
+        .radio_button {
+            margin-left: 10px;
         }
-        .select {
-            display: grid;
-            grid-template-areas: "select";
-            align-items: center;
-            position: relative;
-            min-width: 15ch;
-            max-width: 30ch;
-            border: 1px solid var(--select-border);
-            border-radius: 0.25em;
-            padding: 0.25em 0.5em;
-            font-size: 1.25rem;
-            cursor: pointer;
-            line-height: 1.1;
-            background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-            select {
-                grid-area: select;
-            }
-            &::after {
-                grid-area: select;
-                content: "";
-                justify-self: end;
-                width: 0.8em;
-                height: 0.5em;
-                background-color: var(--select-arrow);
-                clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-            }
-        }
+
     }
   
 </style>

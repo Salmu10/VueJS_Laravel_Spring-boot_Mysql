@@ -24,10 +24,7 @@ export const userAdmin = {
         },
         [Constant.ADD_USER]: (state, payload) => {
             if (payload) {
-                console.log(payload);
-                // let data = { ...payload };
-                // data['is_active'] = Number(data['is_active']);
-                // state.users.push(data);
+                state.users.push(payload);
             }
         },
         [Constant.UPDATE_USER]: (state, payload) => {
@@ -75,7 +72,7 @@ export const userAdmin = {
             }
         },
         [Constant.ADD_USER]: (store, payload) => {
-            UserServiceAdmin.CreateUser(payload)
+            UserServiceAdmin.CreateUser(payload.user)
             .then(function (res) {
                 if (res.status === 201) {
                     store.commit(Constant.ADD_USER, res.data.data);
