@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -98,4 +99,63 @@ public class ReserveController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+    @GetMapping("/reserve/reserve_list")
+    public ResponseEntity<List<Reserve>> getReserveList() {
+        try {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = UserRepository.findByUsername(userDetails.getUsername()).get();
+
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            List<Reserve> reserves = new ArrayList<Reserve>();
+            ReserveRepository.getReserveList(user.getId()).forEach(reserves::add);
+            
+            return new ResponseEntity<>(reserves, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/reserve/pending_reserve_list")
+    public ResponseEntity<List<Reserve>> getPendingReserveList() {
+        try {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = UserRepository.findByUsername(userDetails.getUsername()).get();
+
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            List<Reserve> reserves = new ArrayList<Reserve>();
+            ReserveRepository.getPendingReserves(user.getId()).forEach(reserves::add);
+            
+            return new ResponseEntity<>(reserves, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/reserve/delete_reserve/{id_reserve}")
+    public ResponseEntity<Void> deleteReserveFromUser(@PathVariable(required = true) Long id_reserve) {
+        try {
+            // UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            // User user = UserRepository.findByUsername(userDetails.getUsername()).get();
+            // if (user == null) {
+            //     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            // }
+
+            // ReserveRepository.deleteReserve(user.getId(), id_reserve);
+
+            ReserveRepository.deleteById(id_reserve);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

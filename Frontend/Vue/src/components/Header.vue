@@ -24,10 +24,10 @@
                             </span>
                         </button>
                     </router-link>
-                    <a class="link" src="#" v-if="state.isLoged && !state.isAdmin" @click="">
+                    <router-link class="link" to="/profile" v-if="state.isLoged && !state.isAdmin">
                         <font-awesome-icon icon="fa-solid fa-user"/>
                         <p class="username">{{ state.profile.username }}</p>
-                    </a>
+                    </router-link>
                     <a class="link" src="#" v-if="state.isLoged" @click="logout()">Logout</a>
                     <!-- <a class="link" src="#" @click="logout()">Logout</a> -->
                 </div>

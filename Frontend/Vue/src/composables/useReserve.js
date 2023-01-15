@@ -47,3 +47,36 @@ export const useAdmin_notifications = () => {
         .catch(error => console.error(error))
     return notifications;
 };
+
+export const useReserve_list = () => {
+    const reserve_list = ref([])
+    ReserveService.reserve_list_user()
+        .then(res => {
+            console.log(res);
+            reserve_list.value = res.data;
+        })
+        .catch(error => console.error(error))
+    return reserve_list;
+};
+
+export const usePending_reserves = () => {
+    const pending_reserves = ref([])
+    ReserveService.pending_reserves_user()
+        .then(res => {
+            console.log(res);
+            pending_reserves.value = res.data;
+        })
+        .catch(error => console.error(error))
+    return pending_reserves;
+};
+
+export const useDelete_reserve = (id_reserve) => {
+    ReserveService.delete_reserve_fromUser(id_reserve)
+        .then(res => {
+            console.log(res);
+            if (res.status == 200) { 
+                toaster.success('Reserve deleted successfully.');
+            }
+        })
+        .catch(error => toaster.error('Something went wrong deleting the reserve.'))
+};

@@ -21,7 +21,8 @@ const routes = [
   { path: "/dashboard/reserves/add", name: "reserve_add", component: () => import('../views/Admin/Reserve/ReserveAdd.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/dashboard/reserves/update/:id", name: "reserve_update", component: () => import('../views/Admin/Reserve/ReserveUpdate.vue'), beforeEnter: AuthGuards.authGuardAdmin, meta: { requiresAuth: true } },
   { path: "/login", name: "login", component: () => import('../views/Login/Login.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } },
-  { path: "/register", name: "register", component: () => import('../views/Login/Register.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } }
+  { path: "/register", name: "register", component: () => import('../views/Login/Register.vue'), beforeEnter: AuthGuards.noAuth, meta: { requiresAuth: true } },
+  { path: "/profile", name: "profile", component: () => import('../views/Client/Profile.vue'), beforeEnter: AuthGuards.AuthGuard, meta: { requiresAuth: true } }
 ];
 
 const router = createRouter({
