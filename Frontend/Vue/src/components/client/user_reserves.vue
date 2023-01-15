@@ -15,6 +15,7 @@
                 <p>
                     The reserve for <strong>{{ reserve.reserve_type }}</strong> on <strong>{{ reserve.reserve_date }}</strong> for <strong>{{ reserve.capacity }}</strong>
                     people is already confirmed.
+                    <a class="delete_reserve" @click="delete_reserve(reserve.id)">You can cancel the reserve there</a>.
                 </p>
             </div>
         </div>
