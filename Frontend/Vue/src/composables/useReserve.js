@@ -52,7 +52,6 @@ export const useReserve_list = () => {
     const reserve_list = ref([])
     ReserveService.reserve_list_user()
         .then(res => {
-            console.log(res);
             reserve_list.value = res.data;
         })
         .catch(error => console.error(error))
@@ -63,7 +62,6 @@ export const usePending_reserves = () => {
     const pending_reserves = ref([])
     ReserveService.pending_reserves_user()
         .then(res => {
-            console.log(res);
             pending_reserves.value = res.data;
         })
         .catch(error => console.error(error))
@@ -73,7 +71,6 @@ export const usePending_reserves = () => {
 export const useDelete_reserve = (id_reserve) => {
     ReserveService.delete_reserve_fromUser(id_reserve)
         .then(res => {
-            console.log(res);
             if (res.status == 200) { 
                 toaster.success('Reserve deleted successfully.');
             }
