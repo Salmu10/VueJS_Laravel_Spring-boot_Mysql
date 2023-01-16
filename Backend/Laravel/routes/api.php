@@ -24,6 +24,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('user', AuthController::class);
     Route::resource('reserve', ReserveController::class);
     Route::get('pending', [ReserveController::class, 'pending']);
+    Route::get('pending_list', [ReserveController::class, 'pending_list']);
 });
 
 // Route::resource('table', TableController::class);

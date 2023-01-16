@@ -23,6 +23,10 @@ class ReserveController extends Controller {
         return response()->json($notifications);
     }
 
+    public function pending_list() {
+        return ReserveResource::collection(Reserve::where('confirmed', false)->get());
+    }
+
     public function store(StoreReserveRequest $request) {
         return ReserveResource::make(Reserve::create($request->validated()));
     }
@@ -31,7 +35,7 @@ class ReserveController extends Controller {
         return ReserveResource::make(Reserve::where('id', $id)->firstOrFail());
     }
 
-    public function update(UpdateReserveRequest $request, $id) {
+    public function update($id, UpdateReserveRequest $request) {
         return response()->json(Reserve::where('id', $id)->update($request->validated()));
     }
 

@@ -7,4 +7,16 @@ export default {
         return Api(`${secret.LARAVEL_APP_URL}`).get(`pending`);
     },
 
+    reserve_list() {
+        return Api(`${secret.LARAVEL_APP_URL}`).get('reserve');
+    },
+
+    update_reserve(id_reserve, status) {
+        return Api(`${secret.LARAVEL_APP_URL}`).put(`reserve/${id_reserve}`, { confirmed: status });
+    },
+
+    delete_reserve(id_reserve) {
+        return Api(`${secret.LARAVEL_APP_URL}`).delete(`reserve/${id_reserve}`);
+    },
+
 }

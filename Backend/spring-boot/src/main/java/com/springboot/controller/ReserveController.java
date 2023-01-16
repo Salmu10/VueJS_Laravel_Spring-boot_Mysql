@@ -99,9 +99,9 @@ public class ReserveController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-    @GetMapping("/reserve/reserve_list")
-    public ResponseEntity<List<Reserve>> getReserveList() {
+    
+    @GetMapping("/reserve/confirmed_user_reserves")
+    public ResponseEntity<List<Reserve>> getReserveListUser() {
         try {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = UserRepository.findByUsername(userDetails.getUsername()).get();
@@ -111,7 +111,7 @@ public class ReserveController {
             }
 
             List<Reserve> reserves = new ArrayList<Reserve>();
-            ReserveRepository.getReserveList(user.getId()).forEach(reserves::add);
+            ReserveRepository.getReserveListUser(user.getId()).forEach(reserves::add);
             
             return new ResponseEntity<>(reserves, HttpStatus.OK);
         } catch (Exception e) {
@@ -120,7 +120,7 @@ public class ReserveController {
         }
     }
 
-    @GetMapping("/reserve/pending_reserve_list")
+    @GetMapping("/reserve/pending_user_reserves")
     public ResponseEntity<List<Reserve>> getPendingReserveList() {
         try {
             UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -131,7 +131,7 @@ public class ReserveController {
             }
 
             List<Reserve> reserves = new ArrayList<Reserve>();
-            ReserveRepository.getPendingReserves(user.getId()).forEach(reserves::add);
+            ReserveRepository.getPendingUserReserves(user.getId()).forEach(reserves::add);
             
             return new ResponseEntity<>(reserves, HttpStatus.OK);
         } catch (Exception e) {

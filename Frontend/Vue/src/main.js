@@ -10,8 +10,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SetupCalendar, DatePicker } from 'v-calendar';
 
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-library.add(faSearch, faUser);
+import { faSearch, faUser, faCircleXmark, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+library.add(faSearch, faUser, faCircleXmark, faCircleCheck);
 
 const app = createApp(App);
 app.use(router);

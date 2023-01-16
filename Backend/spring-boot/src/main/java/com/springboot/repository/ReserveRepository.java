@@ -22,10 +22,10 @@ public interface ReserveRepository extends JpaRepository<Reserve, Long> {
     String available_type(@Param("id_table") Integer id_table, @Param("reserve_date") String reserve_date);
 
     @Query(value = "SELECT r.* FROM reserves r WHERE r.id_user = :id_user AND r.confirmed = true", nativeQuery = true)
-    List<Reserve> getReserveList(@Param("id_user") Long id_user);
+    List<Reserve> getReserveListUser(@Param("id_user") Long id_user);
 
     @Query(value = "SELECT r.* FROM reserves r WHERE r.id_user = :id_user AND r.confirmed = false", nativeQuery = true)
-    List<Reserve> getPendingReserves(@Param("id_user") Long id_user);
+    List<Reserve> getPendingUserReserves(@Param("id_user") Long id_user);
 
     @Query(value = "DELETE r.* FROM reserves r WHERE r.id_user = :id_user AND r.id = :id_reserve", nativeQuery = true)
     Void deleteReserve(@Param("id_user") Long id_user, @Param("id_reserve") Long id_reserve);

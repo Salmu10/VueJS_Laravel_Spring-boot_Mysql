@@ -19,16 +19,15 @@ export default {
         return Api(`${secret.SPRING_APP_URL}`).get(`reserve/available_type?${params.join('&')}`);
     },
 
-    reserve_list_user() {
-        return Api(`${secret.SPRING_APP_URL}`).get('reserve/reserve_list');
+    confirmed_user_reserves() {
+        return Api(`${secret.SPRING_APP_URL}`).get('reserve/confirmed_user_reserves');
     },
 
-    pending_reserves_user() {
-        return Api(`${secret.SPRING_APP_URL}`).get('reserve/pending_reserve_list');
+    pending_user_reserves() {
+        return Api(`${secret.SPRING_APP_URL}`).get('reserve/pending_user_reserves');
     },
 
     delete_reserve_fromUser(id_reserve) {
-        console.log(id_reserve);
         return Api(`${secret.SPRING_APP_URL}`).delete(`reserve/delete_reserve/${id_reserve}`);
     }
 

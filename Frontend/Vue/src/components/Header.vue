@@ -14,8 +14,7 @@
                     <router-link class="link" to="/login" v-if="!state.isLoged">Login</router-link>
                     <router-link class="link" to="/register" v-if="!state.isLoged">Register</router-link>
                     <router-link class="link" to="/dashboard" v-if="state.isAdmin">PAdmin</router-link>
-                    <!-- <router-link class="link" to="" v-if="state.isAdmin">Admin</router-link> -->
-                    <router-link to="/dashboard" v-if="state.isAdmin">
+                    <router-link to="/dashboard/reserves" v-if="state.isAdmin">
                         <button type="button" class="link_btn btn position-relative">
                             <font-awesome-icon icon="fa-solid fa-user"/>
                             Admin
@@ -29,7 +28,6 @@
                         <p class="username">{{ state.profile.username }}</p>
                     </router-link>
                     <a class="link" src="#" v-if="state.isLoged" @click="logout()">Logout</a>
-                    <!-- <a class="link" src="#" @click="logout()">Logout</a> -->
                 </div>
             </nav>
         </div>
@@ -166,8 +164,14 @@
         text-transform: uppercase;
         font-weight: bold;
         margin: 10px;
+        border: 0;
+        border-color: none;
         &:hover {
             color: #FB1D26;
+        }
+        &:active, :visited {
+            border: 0;
+            border-color: none;
         }
     }
 

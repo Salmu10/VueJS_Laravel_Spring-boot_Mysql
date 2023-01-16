@@ -50,7 +50,17 @@ export const useAdmin_notifications = () => {
 
 export const useReserve_list = () => {
     const reserve_list = ref([])
-    ReserveService.reserve_list_user()
+    ReserveServiceAdmin.reserve_list()
+        .then(res => {
+            reserve_list.value = res.data.data;
+        })
+        .catch(error => console.error(error))
+    return reserve_list;
+};
+
+export const useReserve_confirmed_list = () => {
+    const reserve_list = ref([])
+    ReserveService.confirmed_user_reserves()
         .then(res => {
             reserve_list.value = res.data;
         })
@@ -58,9 +68,9 @@ export const useReserve_list = () => {
     return reserve_list;
 };
 
-export const usePending_reserves = () => {
+export const usePending_user_reserves = () => {
     const pending_reserves = ref([])
-    ReserveService.pending_reserves_user()
+    ReserveService.pending_user_reserves()
         .then(res => {
             pending_reserves.value = res.data;
         })
@@ -68,9 +78,31 @@ export const usePending_reserves = () => {
     return pending_reserves;
 };
 
+export const useUpdate_reserve_admin = (id_reserve, status) => {
+    ReserveServiceAdmin.update_reserve(id_reserve, status)
+        .then(res => {
+            console.log(res);
+            if (res.status == 200) { 
+                toaster.success('Reserve updated successfully.');
+            }
+        })
+        .catch(error => toaster.error('Something went wrong updating the reserve.'))
+};
+
 export const useDelete_reserve = (id_reserve) => {
     ReserveService.delete_reserve_fromUser(id_reserve)
         .then(res => {
+            if (res.status == 200) { 
+                toaster.success('Reserve deleted successfully.');
+            }
+        })
+        .catch(error => toaster.error('Something went wrong deleting the reserve.'))
+};
+
+export const useDelete_reserve_admin = (id_reserve) => {
+    ReserveServiceAdmin.delete_reserve(id_reserve)
+        .then(res => {
+            console.log(res);
             if (res.status == 200) { 
                 toaster.success('Reserve deleted successfully.');
             }

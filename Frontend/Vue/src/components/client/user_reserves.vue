@@ -1,6 +1,9 @@
 <template>
     <div class="list_reserve">
         <h3>List of your reserves:</h3>
+        <div class="reserves_void" v-if="state.reserves_pending.length == 0 && state.reserves.length == 0">
+            No reserves yet.
+        </div>
         <div class="reserve_pending" v-for="reserve in state.reserves_pending">
             <div id="alert" class="alert alert-warning" role="alert">
                 <p>
@@ -26,15 +29,15 @@
 <script>
     import { reactive } from 'vue';
     import { useRouter } from 'vue-router';
-    import { usePending_reserves, useReserve_list, useDelete_reserve } from '../../composables/useReserve';
+    import { usePending_user_reserves, useReserve_confirmed_list, useDelete_reserve } from '../../composables/useReserve';
     
     export default {
         setup() {
             const router = useRouter();
 
             const state = reactive({
-                reserves_pending: usePending_reserves(),
-                reserves: useReserve_list(),
+                reserves_pending: usePending_user_reserves(),
+                reserves: useReserve_confirmed_list(),
             })
 
             function delete_reserve(id_reserve) {
@@ -53,7 +56,6 @@
     .list_reserve {
         width: 100%;
         padding: 20px;
-        min-height: 75vh;
         margin-top: 50px;
         p {
             margin: 0;
@@ -67,6 +69,18 @@
             &:visited, :active {
                 color: #007bff;
             }
+        }
+        h3 {
+            font-weight: bold;
+            font-size: 25px;
+            text-transform: uppercase;
+        }
+        .reserves_void {
+            display: block;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
         }
     }
 

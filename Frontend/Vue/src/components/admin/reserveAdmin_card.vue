@@ -1,13 +1,20 @@
 <template>
     <tr>
-        <td class="id_col">{{ table.id }}</td>
-        <td>{{ table.table_name }}</td>
-        <td>{{ table.capacity }}</td>
-        <td>{{ table.available }}</td>
-        <td>{{ table.image }}</td>
+        <td class="id_col">{{ reserve.id }}</td>
+        <td>{{ reserve.id_table }}</td>
+        <td>{{ reserve.id_user }}</td>
+        <td>{{ reserve.capacity }}</td>
+        <td>{{ reserve.reserve_type }}</td>
+        <td>{{ reserve.reserve_date }}</td>
+        <td>
+            <font-awesome-icon icon="fa-solid fa-circle-xmark" v-if="reserve.confirmed == 0" class="cross_icon fa-2x"/>
+            <font-awesome-icon icon="fa-solid fa-circle-check" v-if="reserve.confirmed == 1" class="check_icon fa-2x"/>
+            <!-- {{ reserve.confirmed }} -->
+        </td>
         <td> 
-            <button class="buttons" @click="updateTable(table.id)">Edit</button>
-            <button class="buttons" @click="deleteTable(table.id)">Delete</button>
+            <button class="buttons" v-if="reserve.confirmed == 0" @click="confirmReserve(reserve.id)">Confirm</button>
+            <button class="buttons" v-if="reserve.confirmed == 1" @click="unConfirmReserve(reserve.id)">Unconfirm</button>
+            <button class="buttons" @click="deleteReserve(reserve.id)">Delete</button>
         </td>
     </tr>
 </template>
@@ -16,26 +23,35 @@
 
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
-    import Constant from '../../Constant.js';
+    import { useDelete_reserve_admin, useUpdate_reserve_admin } from '../../composables/useReserve';
 
     export default {
         props: {
-            table: Object
+            reserve: Object
         },
         setup(props) {
 
             const store = useStore();
             const router = useRouter();
 
-            function updateTable(id) {
-                store.dispatch("tableAdmin/" + Constant.INITIALIZE_TABLE, { table: { ...props.table } });
-                router.push({ name: 'table_update', params: { id } });
-            }
-            function deleteTable(id) {
-                store.dispatch("tableAdmin/" + Constant.DELETE_TABLE, { id });
+            function confirmReserve(id) {
+                const status = true;
+                useUpdate_reserve_admin(id, status)
+                router.push({ name: 'dashboard' });
             }
 
-            return { store, updateTable, deleteTable };
+            function unConfirmReserve(id) {
+                const status = false;
+                useUpdate_reserve_admin(id, status)
+                router.push({ name: 'dashboard' }); 
+            }
+
+            function deleteReserve(id) {
+                useDelete_reserve_admin(id);
+                router.push({ name: 'dashboard' });
+            }
+
+            return { store, confirmReserve, unConfirmReserve, deleteReserve };
         }
     }
 </script>
@@ -50,7 +66,7 @@
         display: inline-block;
         margin-right: 20px;
         margin-left: 20px;
-        width: 90px;
+        width: 100px;
         padding: 5px;
         text-transform: uppercase;
         font-weight: bold;
@@ -63,4 +79,13 @@
             background-color: #4ba7a2;
         }
     }
+
+    .cross_icon {
+        color: red;
+    }
+
+    .check_icon {
+        color: green;
+    }
+
 </style>

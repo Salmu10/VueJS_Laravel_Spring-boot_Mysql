@@ -15,7 +15,7 @@ class UpdateReserveRequest extends FormRequest {
             'reserve_date' => 'sometimes',
             'reserve_type' => 'sometimes',
             'capacity' => 'sometimes',
-            'confirmed' => 'sometimes',
+            'confirmed' => 'required',
         ];
     }
 }

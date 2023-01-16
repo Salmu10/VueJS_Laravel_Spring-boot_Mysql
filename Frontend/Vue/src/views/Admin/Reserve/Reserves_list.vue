@@ -1,47 +1,54 @@
 <template>
-    <div class="tables_list_container">
-        <h1>Tables List</h1>
-        <router-link to="/dashboard/tables/add" class="button add_button">Add Table</router-link>
+    <div class="reserves_list_container">
+        <h1>Reserves List</h1>
         <table class="table">
             <thead class="thead_tblist">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Is Table</th>
+                    <th>Id User</th>
                     <th>Capacity</th>
-                    <th>Available</th>
-                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Confirmed</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="tbody_tblist">
-                <tableAdmin_card v-for="table in state.tables" :key="table.id" :table="table"/>
+                <reserveAdmin_card v-for="reserve in state.reserves" :key="reserve.id" :reserve="reserve"/>
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
-    import { reactive, computed } from 'vue';
-    import { useStore } from 'vuex';
-    import Constant from '../../../Constant';
-    import tableAdmin_card from '../../../components/admin/tableAdmin_card.vue';
+    import { reactive } from 'vue';
+    import { useRouter } from 'vue-router';
+    import reserveAdmin_card from '../../../components/admin/reserveAdmin_card.vue';
+    import { useReserve_list, useDelete_reserve } from '../../../composables/useReserve';
 
     export default {
-        components: { tableAdmin_card },
+        components: { reserveAdmin_card },
         setup() {
-            const store = useStore();
-            store.dispatch("tableAdmin/" + Constant.INITIALIZE_TABLE);
+            const router = useRouter();
+
             const state = reactive({
-                tables: computed(() => store.getters['tableAdmin/GetTables'])
-            });
-            return { state };
+                reserves: useReserve_list(),
+            })
+
+            function delete_reserve(id_reserve) {
+                useDelete_reserve(id_reserve);
+                router.push({ name: 'home' });
+            }
+
+            return { state, delete_reserve };
         }
     }
 </script>
 
 <style lang="scss">
 
-    .tables_list_container {
+    .reserves_list_container {
         width: 100%;
         padding: 20px;
         min-height: 70vh;
@@ -53,24 +60,6 @@
             text-transform: uppercase;
             color: #333;
             padding: 30px;
-        }
-        .add_button {
-            display: block;
-            width: 150px;
-            padding: 10px;
-            margin: auto;
-            margin-bottom: 3%;
-            text-transform: uppercase;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            border: 2px solid #333;
-            border-radius: 10px; 
-            background-color: #EAF2E3;
-            color: #333;
-            &:hover{
-                background-color: #66D7D1;
-            }
         }
         .table {
             background-color: #EAF2E3;
