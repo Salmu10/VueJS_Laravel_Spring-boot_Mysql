@@ -2,12 +2,9 @@
     <div class="home_container">
         <h1>Categories</h1>
         <carousel :categories="state.categories" @emitAction="redirect"/>
-        <h1>Menus</h1>
-        <div class="menus_semana">
-            <p>Week Menu</p>
-        </div>
-        <div class="menus_finde">
-            <p>Weekend Menu</p>
+        <h1>The Menu</h1>
+        <div class="menu">
+            <img src="../assets/Menu.jpg" alt="menu">
         </div>
     </div>
 </template>
@@ -63,6 +60,13 @@
             color: #333;
             padding: 20px;
             margin-top: 10px;
+        }
+        .menu {
+            width: 50%;
+            margin: auto;
+            img {
+                width: 100%;
+            }
         }
     }
 

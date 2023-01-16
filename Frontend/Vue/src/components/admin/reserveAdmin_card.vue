@@ -9,7 +9,6 @@
         <td>
             <font-awesome-icon icon="fa-solid fa-circle-xmark" v-if="reserve.confirmed == 0" class="cross_icon fa-2x"/>
             <font-awesome-icon icon="fa-solid fa-circle-check" v-if="reserve.confirmed == 1" class="check_icon fa-2x"/>
-            <!-- {{ reserve.confirmed }} -->
         </td>
         <td> 
             <button class="buttons" v-if="reserve.confirmed == 0" @click="confirmReserve(reserve.id)">Confirm</button>
