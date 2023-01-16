@@ -3,7 +3,7 @@
         <h1>PROFILE</h1>
         <div class="user_info">
             <div class="profile_image">
-                <img class="" :src="state.user.image" alt=""/>
+                <img class="user_image" :src="state.user.image" alt=""/>
             </div>
             <div class="profile_user">
                 <p><strong>Username: </strong>{{ state.user.username }}</p>
@@ -55,10 +55,24 @@
         }
         .user_info {
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
+            width: 40%;
+            margin: auto;
+            justify-content: space-between;
             .profile_image {
-                width: 30%;
+                width: 200px;
+                margin: auto;
+                .user_image {
+                    display: inline-block;
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 100px;
+                    overflow: hidden;
+                    border: 4px solid #142b3b;
+                }
+            }
+            .profile_user {
+                margin: auto;
+                padding: 10px;
             }
         }
     }

@@ -113,10 +113,6 @@
         margin-right: 5%;
     }
 
-    // .search {
-    //     width: 400px;
-    // }
-
     nav {
         grid-column-start: 3;
         grid-column-end: 4;
