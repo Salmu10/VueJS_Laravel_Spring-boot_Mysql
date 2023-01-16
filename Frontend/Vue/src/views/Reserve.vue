@@ -33,9 +33,7 @@
                 if (route.params.filters !== '') {
                     filters = JSON.parse(atob(route.params.filters));
                 }
-            } catch (error) {
-                // console.log(error);
-            }
+            } catch (error) { }
 
             const state = reactive({
                 tables: useFilters(filters),
@@ -54,6 +52,7 @@
                 router.push({ name: "reserve" });
                 state.tables = useFilters(delete_filters);
                 state.page = 1;
+                filters = delete_filters;
                 state.total_pages = usePaginate(delete_filters);
             }
 
@@ -62,9 +61,7 @@
                     if (route.params.filters !== '') {
                         filters = JSON.parse(atob(route.params.filters));
                     }
-                } catch (error) {
-                    // console.log(error);
-                }
+                } catch (error) { }
                 filters.page = page_num;
                 state.page = filters.page;
                 apply_filters(filters);

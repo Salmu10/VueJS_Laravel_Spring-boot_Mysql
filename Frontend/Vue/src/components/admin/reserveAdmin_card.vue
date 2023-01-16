@@ -66,7 +66,7 @@
         display: inline-block;
         margin-right: 20px;
         margin-left: 20px;
-        width: 120px;
+        width: 130px;
         padding: 5px;
         text-transform: uppercase;
         font-weight: bold;

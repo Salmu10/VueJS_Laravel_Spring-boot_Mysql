@@ -165,9 +165,10 @@
         &:hover {
             color: #FB1D26;
         }
-        &:active, :visited {
+        &:active, :visited, :focus {
             border: 0;
             border-color: none;
+            box-shadow: none;
         }
     }
 
